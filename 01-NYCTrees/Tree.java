@@ -12,19 +12,26 @@ import java.util.*;
 public class Tree{
 
     private int treeID    = 0;
-    private int specode   = 0;
     private int zipcode   = 0;
     private int diameter  = 0;
     private int condition = 0;
-    private String boro         = "";
-    private String streetName   = "";
-    private String crossStreet1 = "";
-    private String crossStreet2 = "";
+    private String specode   = "";
+    private String boro      = "";
+    private String strName   = "";
+    private String crossStr1 = "";
+    private String crossStr2 = "";
 
-    public static void main(String[] args){
-        Tree t = new Tree();
-        t.setZip(11201);
-        System.out.println(t.getZip());
+    //TREEID,ONSTREET,CROSSSTREE,CROSSSTR_1,TREECONDIT,DIAMETER,SPECIES,BOROUGH,ZIPCODE
+    public Tree(String strName, String crossStr1,String crossStr2, int condition, int diameter, String specode, String boro, int zipcode){
+        this.treeID       = treeID;
+        this.zipcode      = zipcode;
+        this.diameter     = diameter;
+        this.condition    = condition;
+        this.specode      = specode;
+        this.boro         = boro;
+        this.strName      = strName;
+        this.crossStr1    = crossStr1;
+        this.crossStr2    = crossStr2;
     }
 
     public int getID(){
@@ -81,30 +88,30 @@ public class Tree{
         return;
     }
 
-    public String getStreet(){
-        return this.streetName;
+    public String getStr(){
+        return this.strName;
     }
 
-    public void setStreet(String streetName){
-        this.streetName = streetName;
+    public void setStr(String strName){
+        this.strName = strName;
         return;
     }
 
     public String getCross1(){
-        return this.crossStreet1;
+        return this.crossStr1;
     }
 
-    public void setCross1(String crossStreet1){
-        this.crossStreet1 = crossStreet1;
+    public void setCross1(String crossStr1){
+        this.crossStr1 = crossStr1;
         return;
     }
-        return this.crossStreet2;
+        return this.crossStr2;
     }
 
-    public void setCross2(String crossStreet2){
-        this.crossStreet2 = crossStreet2;
+    public void setCross2(String crossStr2){
+        this.crossStr2 = crossStr2;
         return;
     }
-                            
+
 
 }
