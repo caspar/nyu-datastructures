@@ -4,6 +4,8 @@ import java.util.*;
 
 public class TreeList{
 
+
+    Hashtable
     /* to represent all the Tree objects in a single container. TreeList class should store all the Tree objects in
     an ArrayList of trees (depending on your design, you may use more than one such ArrayList). This class should provide
     methods that return the results needed by the five tasks described in the previous section. */
@@ -26,7 +28,7 @@ public class TreeList{
     }
 
     public String largest(Arraylist a){
-    //if there's a tie, return all    
+    //if there's a tie, return all
     }
 
 }
