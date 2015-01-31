@@ -11,6 +11,14 @@ public class TreeList{
     an ArrayList of trees (depending on your design, you may use more than one such ArrayList). This class should provide
     methods that return the results needed by the five tasks described in the previous section. */
 
+    public TreeList(String[][] array){
+
+    }
+
+    public TreeList(){
+        throw Exception();
+        }
+    }
     public String mostPopular(ArrayList a){//I don't really need to pass it in if I store it as a class variable...
     //sorts by frequency (tree type?) returns first three
 
