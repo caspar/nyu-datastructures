@@ -7,29 +7,30 @@ import java.util.Scanner;
 public class TreeInfo{
 
     private String[][] parsed;
-    public  String fileName;
+    //public  String fileName;
     public  String outName;
     private Scanner scanner;
+    final int EXT_LEN = 4;
 
     public static final Hashtable<String, String> TREES = new Hashtable<String, String>(36);
 
     public static void main(String[] args){
-        TreeInfo test = new TreeInfo();
-        TreeList list = new TreeList();
         if(args.length == 0){
             System.exit(0);
         }
-        test.fileName = args[0];
-
-        test.outName  = test.fileName.substring(0,test.fileName.length()-4)+".txt";
-        System.out.println(test.outName);
-        test.makeHash();
-        System.out.println(TREES.toString());
+        TreeInfo test = new TreeInfo(args[0]);
+        TreeList list = new TreeList();
     }
 
-    private void parse(){
+    public TreeInfo(String file){
+        makeHash();
+        parse(file);
+    }
+
+    private void parse(String file){
+        outName = file.substring(0, file.length() - EXT_LEN) + ".txt";
         try{
-            scanner = new Scanner(new File(fileName));
+            scanner = new Scanner(new File(file));
             scanner.useDelimiter("\\s*,\\s*");
             while(scanner.hasNext()){
                 System.out.println(scanner.next());
