@@ -21,17 +21,29 @@ public class Tree{
     private String crossStr1 = "";
     private String crossStr2 = "";
 
+    public Tree(String[] data){
+        this.treeID    = Integer.parseInt(data[0]);
+        this.strName   = data[1];
+        this.crossStr1 = data[2];
+        this.crossStr2 = data[3];
+        this.condition = Integer.parseInt(data[4]);
+        this.diameter  = Integer.parseInt(data[5]);
+        this.specode   = data[6];
+        this.boro      = data[7];
+        this.zipcode   = Integer.parseInt(data[8]);
+    }
+
     //TREEID,ONSTREET,CROSSSTREE,CROSSSTR_1,TREECONDIT,DIAMETER,SPECIES,BOROUGH,ZIPCODE
     public Tree(String strName, String crossStr1,String crossStr2, int condition, int diameter, String specode, String boro, int zipcode){
-        this.treeID       = treeID;
-        this.zipcode      = zipcode;
-        this.diameter     = diameter;
-        this.condition    = condition;
-        this.specode      = specode;
-        this.boro         = boro;
-        this.strName      = strName;
-        this.crossStr1    = crossStr1;
-        this.crossStr2    = crossStr2;
+        this.treeID    = treeID;
+        this.zipcode   = zipcode;
+        this.diameter  = diameter;
+        this.condition = condition;
+        this.specode   = specode;
+        this.boro      = boro;
+        this.strName   = strName;
+        this.crossStr1 = crossStr1;
+        this.crossStr2 = crossStr2;
     }
 
     public int getID(){
@@ -43,11 +55,11 @@ public class Tree{
         return;
     }
 
-    public int getSpec(){
+    public String getSpec(){
         return this.specode;
     }
 
-    public void setSpec(int specode){
+    public void setSpec(String specode){
         this.specode = specode;
         return;
     }
@@ -105,6 +117,8 @@ public class Tree{
         this.crossStr1 = crossStr1;
         return;
     }
+
+    public String getCross2(){
         return this.crossStr2;
     }
 
@@ -112,6 +126,5 @@ public class Tree{
         this.crossStr2 = crossStr2;
         return;
     }
-
 
 }
