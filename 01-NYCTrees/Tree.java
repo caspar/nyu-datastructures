@@ -22,6 +22,7 @@ public class Tree{
     private String crossStr2 = "";
 
     public Tree(String[] data){
+        System.out.println(data.toString());
         this.treeID    = Integer.parseInt(data[0]);
         this.strName   = data[1];
         this.crossStr1 = data[2];
@@ -100,11 +101,11 @@ public class Tree{
         return;
     }
 
-    public String getStr(){
+    public String getStreet(){
         return this.strName;
     }
 
-    public void setStr(String strName){
+    public void setStreet(String strName){
         this.strName = strName;
         return;
     }

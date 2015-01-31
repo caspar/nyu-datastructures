@@ -4,7 +4,6 @@ import java.util.*;
 
 public class TreeList{
 
-
     ArrayList trees = new ArrayList();
     public final Hashtable<String, String> TREE_NAMES = new Hashtable<String, String>(36);
     //for each line in .csv file, create new tree object with parameters given by that line
@@ -46,17 +45,20 @@ public class TreeList{
     public String largest(){
         //if there's a tie, return all
         //int largest = 0;
-        Tree largest;
+        Tree largest; //IDK if it's better to store a Tree object or a local int. Do a speed test?
         for (Tree current : trees){
             if (current.getDiameter() > largest.getDiameter()){
                 largest = current;
             }
         }
-        output = TREE_NAMES.get(largest.getID());
+        output  = TREE_NAMES.get(largest.getID()) + ", " + largest.getDiameter() + " inches in diameter\n";
+        output += largest.getStreet() + " (" + largest.getCross1() + ", " + largest.getCross2() + ")\n";
+        output += largest.getZip();
         return output;
     }
 
     private Boolean hasEightCommas(String input){
+        //checks to see if the given string has eight commas (ie, if all assumed fields are there)
         int count = 0;
         for(int i = 0; i < input.length(); i++){
             if (input.charAt(i) == ','){
