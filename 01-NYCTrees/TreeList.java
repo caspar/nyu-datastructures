@@ -16,28 +16,30 @@ public class TreeList{
     }
 
     public TreeList(){
-        throw Exception();
-        }
+
     }
     public String mostPopular(ArrayList a){//I don't really need to pass it in if I store it as a class variable...
-    //sorts by frequency (tree type?) returns first three
-
+        //sorts by frequency (tree type?) returns first three
+        return "";
     }
 
-    public String leastPopular(Arraylist a){
-    //sorts by frequency (tree type?) returns last three
+    public String leastPopular(ArrayList a){
+        //sorts by frequency (tree type?) returns last three
+        return "";
     }
 
-    public String mostGreen(Arraylist a){
-    //sorts by ZC, returns top 3
+    public String mostGreen(ArrayList a){
+        //sorts by ZC, returns top 3
+        return "";
     }
 
-    public String leastGreen(Arraylist a){
-
+    public String leastGreen(ArrayList a){
+        return "";
     }
 
-    public String largest(Arraylist a){
-    //if there's a tie, return all
+    public String largest(ArrayList a){
+        //if there's a tie, return all
+        return "";
     }
 
 }
