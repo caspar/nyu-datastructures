@@ -6,18 +6,18 @@ import java.util.Scanner;
 
 public class TreeInfo{
 
-    public String[] parsed;
+    public String[] parsed = new String[92];
     //public  String fileName;
-    public  String outName;
-    private Scanner scanner;
-    final int EXT_LEN = 4;
+    public String outName;
+    public File outFile;
 
     public static void main(String[] args){
         if(args.length == 0){
+            System.err.println("No file specified");
             System.exit(0);
         }
         TreeInfo test = new TreeInfo(args[0]);
-    }
+        }
 
     public TreeInfo(String file){
         parse(file);
@@ -25,15 +25,28 @@ public class TreeInfo{
     }
 
     private void parse(String file){
-        outName = file.substring(0, file.length() - EXT_LEN) + ".txt";
+        if (file.contains(".")){
+            outName = file.substring(0, file.lastIndexOf('.')) + ".out"; //yummy!
+        }
+        else{
+            outName = file + ".out";
+        }
+        //System.out.println(outName);
         try{
-            scanner = new Scanner(new File(file));
+            File f = new File(file);
+            Scanner scanner = new Scanner(f);
+            scanner.useDelimiter("\n");
+            scanner.next();
             for(int i = 0; scanner.hasNext(); i++){
                 parsed[i] = scanner.next();
             }
             scanner.close();
-        }catch(Exception oops){}
-        System.out.println(parsed.toString());
+        }catch(Exception oops){
+            System.err.println("File not found");
+            //System.out.println(oops);
+            //System.exit(0);
+        }
+        //System.out.println(Arrays.toString(parsed));
         return;
     }
 }

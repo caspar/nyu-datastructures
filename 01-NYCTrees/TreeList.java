@@ -4,7 +4,7 @@ import java.util.*;
 
 public class TreeList{
 
-    ArrayList trees = new ArrayList();
+    ArrayList<Tree> trees = new ArrayList<Tree>();
     public final Hashtable<String, String> TREE_NAMES = new Hashtable<String, String>(36);
     //for each line in .csv file, create new tree object with parameters given by that line
     /* to represent all the Tree objects in a single container. TreeList class should store all the Tree objects in
@@ -27,7 +27,7 @@ public class TreeList{
         //sorts by frequency (tree type?) returns first three
         return "";
     }
-    
+
     public String leastPopular(ArrayList a){
         //sorts by frequency (tree type?) returns last three
         return "";
@@ -44,14 +44,14 @@ public class TreeList{
 
     public String largest(){
         //if there's a tie, return all
-        //int largest = 0;
-        Tree largest; //IDK if it's better to store a Tree object or a local int. Do a speed test?
+        Tree largest = trees.get(0); //IDK if it's better to store a Tree object or a local int. Do a speed test?
         for (Tree current : trees){
             if (current.getDiameter() > largest.getDiameter()){
                 largest = current;
             }
         }
-        output  = TREE_NAMES.get(largest.getID()) + ", " + largest.getDiameter() + " inches in diameter\n";
+        String output = "";
+        output += TREE_NAMES.get(largest.getID()) + ", " + largest.getDiameter() + " inches in diameter\n";
         output += largest.getStreet() + " (" + largest.getCross1() + ", " + largest.getCross2() + ")\n";
         output += largest.getZip();
         return output;

@@ -18,7 +18,7 @@
             - trim()  from String  //to match user input
             - save country + capital into an array/AL obj
         2.  - change scanner delimiter to '-' and `'\n'`
-    7. GAME
+    7. GAMEGAMEGAMEGAME
         - loop n times //user specified, etc.
             - ask question ("what is the capital of ___ ?")
             - if correct

@@ -22,7 +22,7 @@ public class Tree{
     private String crossStr2 = "";
 
     public Tree(String[] data){
-        System.out.println(data.toString());
+        //System.out.println(Arrays.toString(data));
         this.treeID    = Integer.parseInt(data[0]);
         this.strName   = data[1];
         this.crossStr1 = data[2];
