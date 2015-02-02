@@ -27,7 +27,7 @@ public class TreeList{
         //sorts by frequency (tree type?) returns first three
         return "";
     }
-
+    
     public String leastPopular(ArrayList a){
         //sorts by frequency (tree type?) returns last three
         return "";
@@ -69,7 +69,7 @@ public class TreeList{
     }
 
     private void passArgs(String input){
-        trees.add(new Tree(input.split(",")));
+        trees.add(new Tree(input.split(","))); //I love this line
     }
 
     private final void makeHash(){

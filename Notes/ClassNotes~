@@ -1,0 +1,20 @@
+2/2
+Guess Capitals Game //file parsing review
+    - create File obj for input file
+        - check the size of args[] (if wrong, quit)
+        - create file obj
+        - make sure file exists & that you can write to it
+    - create Scanner obj using the file obj from above
+    ``` scanner = new Scanner(new File(file));
+
+
+1/26
+
+Books:
+
+(req'd) Object0Oriented Data Structures Using Java, Third Edition
+Neil Dale et al.
+
+(req'd, free?) OpenDSA - online eBook
+
+Introduction to Java Programming
