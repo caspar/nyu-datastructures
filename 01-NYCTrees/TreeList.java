@@ -6,9 +6,7 @@ public class TreeList{
 
     ArrayList<Tree> trees = new ArrayList<Tree>();
     public final Hashtable<String, String> TREE_NAMES = new Hashtable<String, String>(36);
-    HashMap<String,int> zipMap = new HashMap<String,int>();
-
-      zips = new ArrayList<Integer>();
+    HashMap<Integer, Integer> zipMap = new HashMap<Integer, Integer>();
     //for each line in .csv file, create new tree object with parameters given by that line
     /* to represent all the Tree objects in a single container. TreeList class should store all the Tree objects in
     an ArrayList of trees (depending on your design, you may use more than one such ArrayList). This class should provide
@@ -21,7 +19,8 @@ public class TreeList{
                 passArgs(str);
             }
         }
-        tester();
+        mostGreen();
+        //tester();
     }
     public void tester(){
         for (Tree t : trees){
@@ -31,7 +30,8 @@ public class TreeList{
     public TreeList(){
 
     }
-    public String mostPopular(ArrayList a){//I don't really need to pass it in if I store it as a class variable...
+    public String mostPopular(){
+        //I don't really need to pass it in if I store it as a class variable...
         //sorts by frequency (tree type?) returns first three
         return "";
     }
@@ -41,7 +41,10 @@ public class TreeList{
         return "";
     }
 
-    public String mostGreen(ArrayList a){
+    public String mostGreen(){
+        String output = "";
+        int last = 0;
+        int current = 0;
         //sorts by ZC, returns top 3
         for (Tree t : trees){
             if (zipMap.containsKey(t.getZip())){
@@ -51,7 +54,9 @@ public class TreeList{
                 zipMap.put(t.getZip(), 1);
             }
         }
-        return "";
+        Map<Integer, Integer> zipSorted = sortByValue(zipMap);
+        System.out.println(zipSorted);
+        return output;
     }
 
     public String leastGreen(ArrayList a){
@@ -89,8 +94,22 @@ public class TreeList{
         //System.out.println(Arrays.toString(input.split(",")));
     }
 
-    private void sortByZip(){
+    public static <K, V extends Comparable<? super V>> Map<K, V> sortByValue( Map<K, V> map ) {
+        List<Map.Entry<K, V>> list = new LinkedList<>( map.entrySet() );
+        Collections.sort( list, new Comparator<Map.Entry<K, V>>() {
+            @Override
+            public int compare( Map.Entry<K, V> o1, Map.Entry<K, V> o2 )
+            {
+                return (o1.getValue()).compareTo( o2.getValue() );
+            }
+        } );
 
+        Map<K, V> result = new LinkedHashMap<>();
+        for (Map.Entry<K, V> entry : list)
+        {
+            result.put( entry.getKey(), entry.getValue() );
+        }
+        return result;
     }
 
     private final void makeHash(){
