@@ -6,6 +6,9 @@ public class TreeList{
 
     ArrayList<Tree> trees = new ArrayList<Tree>();
     public final Hashtable<String, String> TREE_NAMES = new Hashtable<String, String>(36);
+    HashMap<String,int> zipMap = new HashMap<String,int>();
+
+      zips = new ArrayList<Integer>();
     //for each line in .csv file, create new tree object with parameters given by that line
     /* to represent all the Tree objects in a single container. TreeList class should store all the Tree objects in
     an ArrayList of trees (depending on your design, you may use more than one such ArrayList). This class should provide
@@ -18,8 +21,13 @@ public class TreeList{
                 passArgs(str);
             }
         }
+        tester();
     }
-
+    public void tester(){
+        for (Tree t : trees){
+            System.out.println(t.getID());
+        }
+    }
     public TreeList(){
 
     }
@@ -35,6 +43,14 @@ public class TreeList{
 
     public String mostGreen(ArrayList a){
         //sorts by ZC, returns top 3
+        for (Tree t : trees){
+            if (zipMap.containsKey(t.getZip())){
+                zipMap.put(t.getZip(), zipMap.get(t.getZip())+1);
+            }
+            else{
+                zipMap.put(t.getZip(), 1);
+            }
+        }
         return "";
     }
 
@@ -70,6 +86,11 @@ public class TreeList{
 
     private void passArgs(String input){
         trees.add(new Tree(input.split(","))); //I love this line
+        //System.out.println(Arrays.toString(input.split(",")));
+    }
+
+    private void sortByZip(){
+
     }
 
     private final void makeHash(){

@@ -10,6 +10,7 @@ public class TreeInfo{
     //public  String fileName;
     public String outName;
     public File outFile;
+    public static int ENTRIES = 0;
 
     public static void main(String[] args){
         if(args.length == 0){
@@ -36,15 +37,13 @@ public class TreeInfo{
             File f = new File(file);
             Scanner scanner = new Scanner(f);
             scanner.useDelimiter("\n");
-            scanner.next();
-            for(int i = 0; scanner.hasNext(); i++){
-                parsed[i] = scanner.next();
+            scanner.next(); //skip first line
+            while(scanner.hasNext()){
+                parsed[ENTRIES++] = scanner.next();
             }
             scanner.close();
         }catch(Exception oops){
             System.err.println("File not found");
-            //System.out.println(oops);
-            //System.exit(0);
         }
         //System.out.println(Arrays.toString(parsed));
         return;
