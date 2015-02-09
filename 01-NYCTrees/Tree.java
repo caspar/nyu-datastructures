@@ -5,7 +5,7 @@ import java.util.*;
 
 /* Notes
  * create primary arraylist
- * create secondary arrqaylists sorted by various params (ie. sipcode, type, etc)
+ * create secondary arrqaylists sorted by various params (ie. zipcode, type, etc)
  *
  */
 

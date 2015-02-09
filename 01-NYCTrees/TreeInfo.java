@@ -11,6 +11,7 @@ public class TreeInfo{
     public String outName;
     public File outFile;
     public static int ENTRIES = 0;
+    TreeList list;
 
     public static void main(String[] args){
         if(args.length == 0){
@@ -18,11 +19,12 @@ public class TreeInfo{
             System.exit(0);
         }
         TreeInfo test = new TreeInfo(args[0]);
-        }
-
+        //test.writeFile();
+    }
     public TreeInfo(String file){
         parse(file);
-        TreeList list = new TreeList(parsed);
+        list = new TreeList(parsed);
+        writeFile();
     }
 
     private void parse(String file){
@@ -47,5 +49,16 @@ public class TreeInfo{
         }
         //System.out.println(Arrays.toString(parsed));
         return;
+    }
+    public void writeFile(){
+        try{
+            PrintWriter pw = new PrintWriter(outName);
+            pw.println(list.largest());
+            pw.close();
+        }catch(Exception oops){
+            System.out.println("oopsies");
+        }
+
+
     }
 }
