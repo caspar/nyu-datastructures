@@ -6,8 +6,7 @@ import java.util.Scanner;
 
 public class TreeInfo{
 
-    public String[] parsed = new String[92];
-    //public  String fileName;
+    public static ArrayList<String> parsed = new ArrayList<String>();
     public String outName;
     public File outFile;
     public static int ENTRIES = 0;
@@ -34,31 +33,36 @@ public class TreeInfo{
         else{
             outName = file + ".out";
         }
-        //System.out.println(outName);
+        System.out.println(outName);
         try{
             File f = new File(file);
             Scanner scanner = new Scanner(f);
             scanner.useDelimiter("\n");
             scanner.next(); //skip first line
             while(scanner.hasNext()){
-                parsed[ENTRIES++] = scanner.next();
+                parsed.add(scanner.next());
             }
             scanner.close();
-        }catch(Exception oops){
+        }catch(FileNotFoundException oops){
             System.err.println("File not found");
         }
         //System.out.println(Arrays.toString(parsed));
         return;
     }
+
     public void writeFile(){
+        String values = getValues();
         try{
             PrintWriter pw = new PrintWriter(outName);
             pw.println(list.largest());
+            pw.println(list.mostGreen());
             pw.close();
-        }catch(Exception oops){
+        }catch(FileNotFoundException oops){
             System.out.println("oopsies");
         }
+    }
 
-
+    public String getValues(){
+        return list.mostPopular() + list.leastPopular() + list.mostGreen() + list.leastGreen() + list.largest();
     }
 }

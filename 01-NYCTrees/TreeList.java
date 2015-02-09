@@ -5,7 +5,11 @@ import java.util.*;
 public class TreeList{
 
     ArrayList<Tree> trees = new ArrayList<Tree>();
+    ArrayList<Integer> zipcodes = new ArrayList<Integer>();
+    ArrayList<String> specodes = new ArrayList<String>();
     public final Hashtable<String, String> TREE_NAMES = new Hashtable<String, String>(100);
+    public final ArrayList<String>         SPEC_CODES = new ArrayList<String>();
+    public final ArrayList<String>         SPEC_NAMES = new ArrayList<String>();
     //for each line in .csv file, create new tree object with parameters given by that line
     /* to represent all the Tree objects in a single container. TreeList class should store all the Tree objects in
     an ArrayList of trees (depending on your design, you may use more than one such ArrayList). This class should provide
@@ -21,6 +25,15 @@ public class TreeList{
         mostGreen();
         //tester();
     }
+
+    public TreeList(ArrayList<String> a){
+        makeHash();
+        for (String str : a){
+            if (hasEightCommas(str)){
+                passArgs(str);
+            }
+        }
+    }
     public void tester(){
         for (Tree t : trees){
             System.out.println(t.getID());
@@ -32,10 +45,15 @@ public class TreeList{
     public String mostPopular(){
         //I don't really need to pass it in if I store it as a class variable...
         //sorts by frequency (tree type?) returns first three
+        for (Tree tree : trees){
+            specodes.add(tree.getSpec()); //now we have an array of speccodes
+        }
+        //find out which is most popular
+        //Collections.frequency
         return "";
     }
 
-    public String leastPopular(ArrayList a){
+    public String leastPopular(){
         //sorts by frequency (tree type?) returns last three
         return "";
     }
@@ -56,7 +74,7 @@ public class TreeList{
         return output;
     }
 
-    public String leastGreen(ArrayList a){
+    public String leastGreen(){
         return "";
     }
 
@@ -91,57 +109,20 @@ public class TreeList{
         trees.add(new Tree(input.split(","))); //I love this line
         //System.out.println(Arrays.toString(input.split(",")));
     }
+
     private void makeHash(){
         try{
             File file = new File("species_list.txt");
             Scanner scanner = new Scanner(file);
             scanner.useDelimiter("\r?\n|\r");
             while (scanner.hasNext()){
-                if (scanner.next().contains(" ") && scanner.next().length() > 2) {
-                    TREE_NAMES.put((scanner.next().substring(0,scanner.next().indexOf(" ",2)).trim()),
-                                   (scanner.next().substring(  scanner.next().indexOf(" ",2)).trim()));
-                }
+                String line = scanner.next();
+                    TREE_NAMES.put((line.substring(0,line.indexOf(" ")).trim()),
+                    (line.substring(line.indexOf(" ")).trim()));
             }
             System.out.println(TREE_NAMES.toString());
         }catch(FileNotFoundException oops){
             System.err.println("Species file not found \n" + oops);
         }
     }
-    // private final void makeHash(){
-    //     TREE_NAMES.put("UNK",    "Unknown");
-    //     TREE_NAMES.put("AC",     "Other Maple");
-    //     TREE_NAMES.put("ACCA",   "Hedge Maple");
-    //     TREE_NAMES.put("ACGI",   "Amur Maple");
-    //     TREE_NAMES.put("ACNE",   "Box Elder");
-    //     TREE_NAMES.put("ACPA",   "Norway Maple");
-    //     TREE_NAMES.put("ACPLCR", "Norway Crimson King Maple");
-    //     TREE_NAMES.put("ACPS",   "Sycamore Maple");
-    //     TREE_NAMES.put("ACRU",   "Red Maple");
-    //     TREE_NAMES.put("ACSA1",  "Silver Maple");
-    //     TREE_NAMES.put("AECA",   "Red Horsechestnut");
-    //     TREE_NAMES.put("AEHI",   "Horsechestnut");
-    //     TREE_NAMES.put("AIAL",   "Tree of Heaven");
-    //     TREE_NAMES.put("ALGL",   "European Alder");
-    //     TREE_NAMES.put("AM",     "Serviceberry");
-    //     TREE_NAMES.put("BE",     "Birch");
-    //     TREE_NAMES.put("CABE",   "European Hornbeam");
-    //     TREE_NAMES.put("CA",     "CATALPA CATALPA");
-    //     TREE_NAMES.put("CACA",   "American Hornbeam");
-    //     TREE_NAMES.put("CEAT",   "Cedar");
-    //     TREE_NAMES.put("CECA",   "Eatern Redbud");
-    //     TREE_NAMES.put("CEJA",   "Katsura Tree");
-    //     TREE_NAMES.put("CEOC",   "Hackberry");
-    //     TREE_NAMES.put("CHVI",   "Fringe Tree");
-    //     TREE_NAMES.put("CLLU",   "Yellowood");
-    //     TREE_NAMES.put("COCO2",  "Turkish Hazelnut");
-    //     TREE_NAMES.put("COFL",   "Flowering Dogwood");
-    //     TREE_NAMES.put("COKO",   "Kousa Dogwood");
-    //     TREE_NAMES.put("COMA",   "Cornelian Cherry");
-    //     TREE_NAMES.put("CR",     "Hawthorn");
-    //     TREE_NAMES.put("DIVI",   "Common Persimmon");
-    //     TREE_NAMES.put("EUUL",   "Hardy Rubber Tree");
-    //     TREE_NAMES.put("FAGR",   "American Beech");
-    //     TREE_NAMES.put("FASY",   "European Beech");
-    //     return;
-    // }
 }
