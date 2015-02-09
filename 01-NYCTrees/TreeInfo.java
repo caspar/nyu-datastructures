@@ -51,7 +51,7 @@ public class TreeInfo{
     }
 
     public void writeFile(){
-        String values = getValues();
+        //String values = getValues();
         try{
             PrintWriter pw = new PrintWriter(outName);
             pw.println(list.largest());

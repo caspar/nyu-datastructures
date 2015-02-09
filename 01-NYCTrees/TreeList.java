@@ -34,14 +34,50 @@ public class TreeList{
             }
         }
     }
+
+    private void makeHash(){
+        try{
+            File file = new File("species_list.txt");
+            Scanner scanner = new Scanner(file);
+            scanner.useDelimiter("\r?\n|\r");
+            while (scanner.hasNext()){
+                String line = scanner.next();
+                TREE_NAMES.put((line.substring(0,line.indexOf(" ")).trim()),
+                (line.substring(line.indexOf(" ")).trim()));
+            }
+            System.out.println(TREE_NAMES.toString());
+        }catch(FileNotFoundException oops){
+            System.err.println("Species file not found \n" + oops);
+        }
+    }
+
+    private Boolean hasEightCommas(String input){
+        //checks to see if the given string has eight commas (ie, if all assumed fields are there)
+        int count = 0;
+        for(int i = 0; i < input.length(); i++){
+            if (input.charAt(i) == ','){
+                count++;
+            }
+        }
+        return count == 8;
+    }
+
+    private void passArgs(String input){
+        if (input.split(",").length == 9)
+            trees.add(new Tree(input.split(","))); //I love this line
+        //System.out.println(Arrays.toString(input.split(",")));
+    }
+
     public void tester(){
         for (Tree t : trees){
             System.out.println(t.getID());
         }
     }
+
     public TreeList(){
 
     }
+
     public String mostPopular(){
         //I don't really need to pass it in if I store it as a class variable...
         //sorts by frequency (tree type?) returns first three
@@ -94,35 +130,4 @@ public class TreeList{
         return output;
     }
 
-    private Boolean hasEightCommas(String input){
-        //checks to see if the given string has eight commas (ie, if all assumed fields are there)
-        int count = 0;
-        for(int i = 0; i < input.length(); i++){
-            if (input.charAt(i) == ','){
-                count++;
-            }
-        }
-        return count == 8;
-    }
-
-    private void passArgs(String input){
-        trees.add(new Tree(input.split(","))); //I love this line
-        //System.out.println(Arrays.toString(input.split(",")));
-    }
-
-    private void makeHash(){
-        try{
-            File file = new File("species_list.txt");
-            Scanner scanner = new Scanner(file);
-            scanner.useDelimiter("\r?\n|\r");
-            while (scanner.hasNext()){
-                String line = scanner.next();
-                    TREE_NAMES.put((line.substring(0,line.indexOf(" ")).trim()),
-                    (line.substring(line.indexOf(" ")).trim()));
-            }
-            System.out.println(TREE_NAMES.toString());
-        }catch(FileNotFoundException oops){
-            System.err.println("Species file not found \n" + oops);
-        }
-    }
 }
