@@ -4,6 +4,16 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+////////////////////////////////////////////
+//     Proudly written without an IDE     //
+////////////////////////////////////////////
+/*******************************************
+ * TreeInfo Class; Main                    *
+ * Parses command-line prompted file       *
+ * Passes file's entries to TreeList class *
+ * @author Caspar Lant                     *
+ *******************************************/
+
 public class TreeInfo{
 
     public static ArrayList<String> parsed = new ArrayList<String>();
@@ -54,11 +64,12 @@ public class TreeInfo{
         //String values = getValues();
         try{
             PrintWriter pw = new PrintWriter(outName);
-            pw.println(list.largest());
+            //pw.println(list.largest());
             pw.println(list.mostGreen());
             pw.close();
         }catch(FileNotFoundException oops){
-            System.out.println("oopsies");
+            System.out.println("Error: File Not Found");
+            System.exit(0);
         }
     }
 

@@ -1,13 +1,23 @@
 import java.io.*;
 import java.util.*;
-//Caspar Lant
+
+////////////////////////////////////////////////////////
+//          Proudly written without an IDE            //
+////////////////////////////////////////////////////////
+/*******************************************************
+ * TreeList Class                                      *
+ * Represents all Tree objects in a single container.  *
+ * Stores and ArrayList of Trees                       *
+ * @author Caspar Lant                                 *
+ *******************************************************/
 
 public class TreeList{
 
     ArrayList<Tree> trees = new ArrayList<Tree>();
     ArrayList<Integer> zipcodes = new ArrayList<Integer>();
     ArrayList<String> specodes = new ArrayList<String>();
-    public final Hashtable<String, String> TREE_NAMES = new Hashtable<String, String>(100);
+
+    public final Hashtable<String, String> TREE_NAMES = new Hashtable<String, String>();
     public final ArrayList<String>         SPEC_CODES = new ArrayList<String>();
     public final ArrayList<String>         SPEC_NAMES = new ArrayList<String>();
     //for each line in .csv file, create new tree object with parameters given by that line
@@ -15,6 +25,11 @@ public class TreeList{
     an ArrayList of trees (depending on your design, you may use more than one such ArrayList). This class should provide
     methods that return the results needed by the five tasks described in the previous section. */
 
+    /**
+     * Deprecated TreeList Constructor
+     * @param  a [description]
+     * @return   [description]
+     */
     public TreeList(String[] a){
         makeHash();
         for(String str : a){
@@ -26,15 +41,23 @@ public class TreeList{
         //tester();
     }
 
-    public TreeList(ArrayList<String> a){
+    /**
+     * TreeList Constructor. Calls makeHash() and makes sure each String in the provided array of tree entries contains the correct number of parameters (done by calling hasEightCommas() method).
+     * @param  entries ArrayList<String> containing unparsed tree entries
+     */
+    public TreeList(ArrayList<String> entries){
         makeHash();
-        for (String str : a){
+        for (String str : entries){
             if (hasEightCommas(str)){
                 passArgs(str);
             }
         }
     }
 
+    /**
+     * Reads in the data from ./species_list.txt, and fills the Hashtable<String, String> TREE_NAMES (previously declared)
+     * Deals with Exceptions by printing an error message.
+     */
     private void makeHash(){
         try{
             File file = new File("species_list.txt");
@@ -45,14 +68,18 @@ public class TreeList{
                 TREE_NAMES.put((line.substring(0,line.indexOf(" ")).trim()),
                 (line.substring(line.indexOf(" ")).trim()));
             }
-            System.out.println(TREE_NAMES.toString());
+            //System.out.println(TREE_NAMES.toString());
         }catch(FileNotFoundException oops){
-            System.err.println("Species file not found \n" + oops);
+            System.err.println("Species file not found \n");
         }
     }
 
+    /**
+    * Checks to see if the given String has eight commas (ie, if all 9 assumed fields are there)
+    * @param  input String representing one Tree entry; a line in the .csv file.
+    * @return       Returns true if input contains eight commas, false otherwise.
+    */
     private Boolean hasEightCommas(String input){
-        //checks to see if the given string has eight commas (ie, if all assumed fields are there)
         int count = 0;
         for(int i = 0; i < input.length(); i++){
             if (input.charAt(i) == ','){
@@ -62,23 +89,24 @@ public class TreeList{
         return count == 8;
     }
 
+    /**
+    * Checks once more to see if the correct number of arguments is present,
+    * breaks the String into a String[], with "," set as the delimeter.
+    * Great line, in my opinion.
+    * 		@param input String representing one Tree entry; a line in the .csv file.
+    */
     private void passArgs(String input){
         if (input.split(",").length == 9)
-            trees.add(new Tree(input.split(","))); //I love this line
+        trees.add(new Tree(input.split(","))); //I love this line
         //System.out.println(Arrays.toString(input.split(",")));
     }
 
-    public void tester(){
-        for (Tree t : trees){
-            System.out.println(t.getID());
-        }
-    }
-
-    public TreeList(){
-
-    }
-
+    /**
+    * Determines the three most popular tree species. Returns more than three if there is a tie.
+    * 		@return The most popular species of trees and their respective quantities, formatted as a String
+    */
     public String mostPopular(){
+        String output = "Most popular trees:\n";
         //I don't really need to pass it in if I store it as a class variable...
         //sorts by frequency (tree type?) returns first three
         for (Tree tree : trees){
@@ -86,16 +114,26 @@ public class TreeList{
         }
         //find out which is most popular
         //Collections.frequency
-        return "";
+        return output;
     }
 
+    /**
+    * Determines the three most popular tree species. Returns more than three if there is a tie.
+    * 		@return The most popular species of trees and their respective quantities, formatted as a String.
+    */
     public String leastPopular(){
+        String output = "least popular trees:\n";
         //sorts by frequency (tree type?) returns last three
         return "";
     }
 
+    /**
+     * Determines the three "greenest" ZIP codes (those which contain the most trees).
+     * Please not that this is not an actual reflection of the zipcode's "green-ness", because area is not taken into account.
+     * @return The greenest ZIP codes and the number of trees that each contains, respectively, formatted as a String
+     */
     public String mostGreen(){
-        String output = "";
+        String output = "Most green ZIP codes:\n";
         // int last = 0;
         // int current = 0;
         // //sorts by ZC, returns top 3
@@ -110,23 +148,34 @@ public class TreeList{
         return output;
     }
 
+    /**
+     * Determines the three least "green" ZIP codes (those which contain the most trees).
+     * Please not that this is not an actual reflection of the zipcode's "green-ness", because area is not taken into account.
+     * @return The least green ZIP codes and the number of trees that each contains, respectively, formatted as a String.
+     */
     public String leastGreen(){
-        return "";
+        String output = "Least green ZIP codes:\n";
+        //sort
+        return output;
     }
 
+    /**
+     * Determines the Tree with greatest diameter. Returns more than one if a tie is found.
+     * @return The species, diameter, and location of the Tree with greatest diameter, formatted as a String.
+     */
     public String largest(){
         //if there's a tie, return all
+        String output = "The largest Tree:\n";
         Tree largest = trees.get(0); //IDK if it's better to store a Tree object or a local int. Do a speed test?
         for (Tree current : trees){
             if (current.getDiameter() > largest.getDiameter()){
                 largest = current;
             }
         }
-        String output = "";
-        output += largest.getSpec() + " \n";
-        output += TREE_NAMES.get(largest.getSpec()) + ", " + largest.getDiameter() + " inches in diameter\n";
-        output += largest.getStreet() + " (" + largest.getCross1() + ", " + largest.getCross2() + ")\n";
-        output += largest.getZip();
+        output += "\t" + largest.getSpec() + "\n"; //will be deleted
+        output += "\t" + TREE_NAMES.get(largest.getSpec()) + ", " + largest.getDiameter() + " inches in diameter\n";
+        output += "\t" + largest.getStreet() + " (" + largest.getCross1() + ", " + largest.getCross2() + ")\n";
+        output += "\t" + largest.getZip();
         return output;
     }
 

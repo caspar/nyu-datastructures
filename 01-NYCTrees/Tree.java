@@ -1,13 +1,20 @@
 import java.io.*;
 import java.util.*;
 
-//Caspar Lant
 
 /* Notes
- * create primary arraylist
- * create secondary arrqaylists sorted by various params (ie. zipcode, type, etc)
- *
- */
+* create primary arraylist
+* create secondary arrqaylists sorted by various params (ie. zipcode, type, etc)
+*
+*/
+
+//////////////////////////////////////////////////////////////
+//             Proudly written without an IDE               //
+//////////////////////////////////////////////////////////////
+/*************************************************************
+* Tree Class -- contains and provides all tree-related data *
+* @author Caspar Lant                                       *
+*************************************************************/
 
 public class Tree{
 
@@ -47,6 +54,10 @@ public class Tree{
         this.crossStr2 = crossStr2;
     }
 
+    /**
+    * getID method. Returns the private treeID variable.
+    * @return treeID; an int unique to a particular Tree object
+    */
     public int getID(){
         return treeID;
     }
@@ -56,6 +67,10 @@ public class Tree{
         return;
     }
 
+    /**
+    * getSpec method. Returns the private specode variable
+    * @return [description]
+    */
     public String getSpec(){
         return this.specode;
     }
@@ -65,6 +80,10 @@ public class Tree{
         return;
     }
 
+    /**
+    * getSpec method. Returns the private specode variable.
+    * @return zipcode an int representing the ZIP code in which the physical incarnation of the Tree object is located.
+    */
     public int getZip(){
         return this.zipcode;
     }
@@ -74,6 +93,10 @@ public class Tree{
         return;
     }
 
+    /**
+    * getDiameter method. Returns the private diameter variable.
+    * @return diameter of the physical tree this object represents
+    */
     public int getDiameter(){
         return this.diameter;
     }
@@ -83,15 +106,10 @@ public class Tree{
         return;
     }
 
-    public int getCond(){
-        return this.diameter;
-    }
-
-    public void setCond(int diameter){
-        this.diameter = diameter;
-        return;
-    }
-
+    /**
+    * getBoro method. Returns the private boro variable.
+    * @return the New York City borough in which the tree is located
+    */
     public String getBoro(){
         return this.boro;
     }
@@ -101,6 +119,10 @@ public class Tree{
         return;
     }
 
+    /**
+    * getStreet method. Returns the private strName variable.
+    * @return name of the street that the tree lives on.
+    */
     public String getStreet(){
         return this.strName;
     }
@@ -110,6 +132,10 @@ public class Tree{
         return;
     }
 
+    /**
+    * getCross1 method. Returns the private crossStr1 variable.
+    * @return the first of the two cross streets that the tree lives betwixt.
+    */
     public String getCross1(){
         return this.crossStr1;
     }
@@ -119,6 +145,10 @@ public class Tree{
         return;
     }
 
+    /**
+    * getCross2 method. Returns the private crossStr2 variable.
+    * @return the second of the two cross streets that the tree lives betwixt.
+    */
     public String getCross2(){
         return this.crossStr2;
     }
