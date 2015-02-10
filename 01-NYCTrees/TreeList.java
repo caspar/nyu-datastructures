@@ -17,6 +17,7 @@ public class TreeList{
     ArrayList<Tree> trees = new ArrayList<Tree>();
     ArrayList<Integer> zipcodes = new ArrayList<Integer>();
     ArrayList<String> specodes = new ArrayList<String>();
+    private static final int SP = 100000; //spacer; explain later
     //SortedMap<Integer, Integer> zippies = new Map<Integer, Integer>();
     public int NUM_TREES = 0;
 
@@ -144,19 +145,28 @@ public class TreeList{
      */
     public String mostGreen(){
         String output = "Most green ZIP codes:\n";
+        int finalists = 3;
         for (Tree tree : trees){
             zipcodes.add(tree.getZip());
         }
         Collections.sort(zipcodes);
+        System.out.println(zipcodes.toString());
         int[] podium = new int[10];
         int current = zipcodes.get(0);
         for (int i = 0; i < NUM_TREES; i++){
-
-
+            System.out.println("yo");
             for (int j = 0; j < podium.length; i++){
-                if (zipcodes.lastIndexOf(current) - zipcodes.indexOf(current) > podium[j]){
-                    
+                if (zipcodes.lastIndexOf(current) - zipcodes.indexOf(current) > podium[j]/SP){ //infinite loop somewhere in here.....
+                    podium[9] = (zipcodes.lastIndexOf(current) - zipcodes.indexOf(current)) * SP + current;
+                    Arrays.sort(podium);
                 }
+            }
+        }
+        //add top three:
+        for (int i = 0; i < finalists; i++){
+            output += "\t" + podium[i]/SP + " " + podium[i]%SP;
+            if (podium[i]/SP == podium[i+1]/SP){
+                finalists++;
             }
         }
         return output + "\n";
