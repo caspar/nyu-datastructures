@@ -1,19 +1,18 @@
 import java.io.*;
 import java.util.*;
 
-
 /* Notes
 * create primary arraylist
 * create secondary arrqaylists sorted by various params (ie. zipcode, type, etc)
-*
 */
 
 //////////////////////////////////////////////////////////////
-//             Proudly written without an IDE               //
+//                 Proudly written sans IDE                 //
 //////////////////////////////////////////////////////////////
 /*************************************************************
-* Tree Class -- contains and provides all tree-related data *
-* @author Caspar Lant                                       *
+* Tree Class -- contains and provides all tree-related data. *
+* @author Caspar Lant                                        *
+* @version 1.1 02/01/2015                                    *
 *************************************************************/
 
 public class Tree{

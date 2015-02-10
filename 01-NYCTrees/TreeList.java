@@ -2,13 +2,14 @@ import java.io.*;
 import java.util.*;
 
 ////////////////////////////////////////////////////////
-//          Proudly written without an IDE            //
+//             Proudly written sans IDE               //
 ////////////////////////////////////////////////////////
 /*******************************************************
  * TreeList Class                                      *
  * Represents all Tree objects in a single container.  *
  * Stores and ArrayList of Trees                       *
  * @author Caspar Lant                                 *
+ * @version 1.1 02/01/2015                             *
  *******************************************************/
 
 public class TreeList{
@@ -16,6 +17,8 @@ public class TreeList{
     ArrayList<Tree> trees = new ArrayList<Tree>();
     ArrayList<Integer> zipcodes = new ArrayList<Integer>();
     ArrayList<String> specodes = new ArrayList<String>();
+    //SortedMap<Integer, Integer> zippies = new Map<Integer, Integer>();
+    public int NUM_TREES = 0;
 
     public final Hashtable<String, String> TREE_NAMES = new Hashtable<String, String>();
     public final ArrayList<String>         SPEC_CODES = new ArrayList<String>();
@@ -33,10 +36,8 @@ public class TreeList{
     public TreeList(String[] a){
         makeHash();
         for(String str : a){
-            if (hasEightCommas(str)){
                 passArgs(str);
             }
-        }
         mostGreen();
         //tester();
     }
@@ -48,20 +49,18 @@ public class TreeList{
     public TreeList(ArrayList<String> entries){
         makeHash();
         for (String str : entries){
-            if (hasEightCommas(str)){
                 passArgs(str);
-            }
         }
     }
 
     /**
      * Reads in the data from ./species_list.txt, and fills the Hashtable<String, String> TREE_NAMES (previously declared)
-     * Deals with Exceptions by printing an error message.
+     * @throws FileNotFoundException Deals with Exceptions by printing an error message.
      */
     private void makeHash(){
         try{
-            File file = new File("species_list.txt");
-            Scanner scanner = new Scanner(file);
+            //File file = new File("species_list.txt");
+            Scanner scanner = new Scanner(new File("species_list.txt"));
             scanner.useDelimiter("\r?\n|\r");
             while (scanner.hasNext()){
                 String line = scanner.next();
@@ -93,17 +92,28 @@ public class TreeList{
     * Checks once more to see if the correct number of arguments is present,
     * breaks the String into a String[], with "," set as the delimeter.
     * Great line, in my opinion.
-    * 		@param input String representing one Tree entry; a line in the .csv file.
+    * @param input String representing one Tree entry; a line in the .csv file.
     */
     private void passArgs(String input){
-        if (input.split(",").length == 9)
-        trees.add(new Tree(input.split(","))); //I love this line
+        String[] entry = input.split(",");
+        if (entry.length == 9 && hasCorrectSpecFormat(entry[6]))
+        trees.add(new Tree(entry)); //I love this line
+        NUM_TREES++;
         //System.out.println(Arrays.toString(input.split(",")));
+    }
+    private Boolean hasCorrectSpecFormat(String input){
+        if (input.length() == 0)
+            return false;
+        for (int i = 0; i < input.length(); i++){
+            if (input.charAt(i) == ',' || input.charAt(i) == ' ' || input.charAt(i) == '0')
+                return false;
+        }
+        return true;
     }
 
     /**
     * Determines the three most popular tree species. Returns more than three if there is a tie.
-    * 		@return The most popular species of trees and their respective quantities, formatted as a String
+    * @return The most popular species of trees and their respective quantities, formatted as a String
     */
     public String mostPopular(){
         String output = "Most popular trees:\n";
@@ -112,40 +122,44 @@ public class TreeList{
         for (Tree tree : trees){
             specodes.add(tree.getSpec()); //now we have an array of speccodes
         }
-        //find out which is most popular
+        Collections.sort(specodes);
         //Collections.frequency
-        return output;
+        return output + "\n";
     }
 
     /**
     * Determines the three most popular tree species. Returns more than three if there is a tie.
-    * 		@return The most popular species of trees and their respective quantities, formatted as a String.
+    * @return The most popular species of trees and their respective quantities, formatted as a String.
     */
     public String leastPopular(){
         String output = "least popular trees:\n";
         //sorts by frequency (tree type?) returns last three
-        return "";
+        return output + "\n";
     }
 
     /**
      * Determines the three "greenest" ZIP codes (those which contain the most trees).
-     * Please not that this is not an actual reflection of the zipcode's "green-ness", because area is not taken into account.
+     * Please not that this is not an accurate reflection of the zipcode's actual "green-ness", because area is not taken into account.
      * @return The greenest ZIP codes and the number of trees that each contains, respectively, formatted as a String
      */
     public String mostGreen(){
         String output = "Most green ZIP codes:\n";
-        // int last = 0;
-        // int current = 0;
-        // //sorts by ZC, returns top 3
-        // for (Tree t : trees){
-        //     if (zipMap.containsKey(t.getZip())){
-        //         zipMap.put(t.getZip(), zipMap.get(t.getZip())+1);
-        //     }
-        //     else{
-        //         zipMap.put(t.getZip(), 1);
-        //     }
-        // }
-        return output;
+        for (Tree tree : trees){
+            zipcodes.add(tree.getZip());
+        }
+        Collections.sort(zipcodes);
+        int[] podium = new int[10];
+        int current = zipcodes.get(0);
+        for (int i = 0; i < NUM_TREES; i++){
+
+
+            for (int j = 0; j < podium.length; i++){
+                if (zipcodes.lastIndexOf(current) - zipcodes.indexOf(current) > podium[j]){
+                    
+                }
+            }
+        }
+        return output + "\n";
     }
 
     /**
@@ -156,7 +170,7 @@ public class TreeList{
     public String leastGreen(){
         String output = "Least green ZIP codes:\n";
         //sort
-        return output;
+        return output + "\n";
     }
 
     /**
@@ -172,11 +186,11 @@ public class TreeList{
                 largest = current;
             }
         }
-        output += "\t" + largest.getSpec() + "\n"; //will be deleted
-        output += "\t" + TREE_NAMES.get(largest.getSpec()) + ", " + largest.getDiameter() + " inches in diameter\n";
+        //output += "\t" + largest.getSpec() + "\n"; //will be deleted
+        output += "\t" + TREE_NAMES.get(largest.getSpec()) + ", " + largest.getDiameter() + " INCHES IN DIAMETER\n";
         output += "\t" + largest.getStreet() + " (" + largest.getCross1() + ", " + largest.getCross2() + ")\n";
         output += "\t" + largest.getZip();
-        return output;
+        return output + "\n";
     }
 
 }
