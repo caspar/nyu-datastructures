@@ -29,15 +29,20 @@ public class Tree{
 
     public Tree(String[] data){
         //System.out.println(Arrays.toString(data));
-        this.treeID    = Integer.parseInt(data[0]);
-        this.strName   = data[1].trim();
-        this.crossStr1 = data[2].trim();
-        this.crossStr2 = data[3].trim();
-        this.condition = Integer.parseInt(data[4]);
-        this.diameter  = Integer.parseInt(data[5]);
-        this.specode   = data[6].trim();
-        this.boro      = data[7].trim();
-        this.zipcode   = Integer.parseInt(data[8]);
+        try{
+            this.treeID    = Integer.parseInt(data[0]);
+            this.strName   = data[1].trim();
+            this.crossStr1 = data[2].trim();
+            this.crossStr2 = data[3].trim();
+            this.condition = Integer.parseInt(data[4]);
+            this.diameter  = Integer.parseInt(data[5]);
+            this.specode   = data[6].trim();
+            this.boro      = data[7].trim();
+            this.zipcode   = Integer.parseInt(data[8]);
+            //TreeList.NUM_TREES++;
+        }catch(Exception e){
+           //System.err.println("corrupted file");
+           }
     }
 
     //TREEID,ONSTREET,CROSSSTREE,CROSSSTR_1,TREECONDIT,DIAMETER,SPECIES,BOROUGH,ZIPCODE

@@ -97,6 +97,6 @@ public class TreeInfo{
     * @return calls TreeList methods and concatenates their outputs into a String.
     */
     public String getValues(){
-        return list.mostPopular() + list.leastPopular() + list.mostGreen() + list.leastGreen() + list.largest();
+        return list.mostPopular() + list.leastPopular() + list.green() + list.largest();
     }
 }

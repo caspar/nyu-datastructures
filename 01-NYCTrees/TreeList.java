@@ -5,21 +5,21 @@ import java.util.*;
 //             Proudly written sans IDE               //
 ////////////////////////////////////////////////////////
 /*******************************************************
- * TreeList Class                                      *
- * Represents all Tree objects in a single container.  *
- * Stores and ArrayList of Trees                       *
- * @author Caspar Lant                                 *
- * @version 1.1 02/01/2015                             *
- *******************************************************/
+* TreeList Class                                      *
+* Represents all Tree objects in a single container.  *
+* Stores and ArrayList of Trees                       *
+* @author Caspar Lant                                 *
+* @version 1.1 02/01/2015                             *
+*******************************************************/
 
 public class TreeList{
 
     ArrayList<Tree> trees = new ArrayList<Tree>();
     ArrayList<Integer> zipcodes = new ArrayList<Integer>();
     ArrayList<String> specodes = new ArrayList<String>();
-    private static final int SP = 100000; //spacer; explain later
+    private final int SP = 100000; //spacer; explain later
     //SortedMap<Integer, Integer> zippies = new Map<Integer, Integer>();
-    public int NUM_TREES = 0;
+    public static int NUM_TREES = 0;
 
     public final Hashtable<String, String> TREE_NAMES = new Hashtable<String, String>();
     public final ArrayList<String>         SPEC_CODES = new ArrayList<String>();
@@ -30,34 +30,34 @@ public class TreeList{
     methods that return the results needed by the five tasks described in the previous section. */
 
     /**
-     * Deprecated TreeList Constructor
-     * @param  a [description]
-     * @return   [description]
-     */
+    * Deprecated TreeList Constructor
+    * @param  a [description]
+    * @return   [description]
+    */
     public TreeList(String[] a){
         makeHash();
         for(String str : a){
-                passArgs(str);
-            }
+            passArgs(str);
+        }
         mostGreen();
         //tester();
     }
 
     /**
-     * TreeList Constructor. Calls makeHash() and makes sure each String in the provided array of tree entries contains the correct number of parameters (done by calling hasEightCommas() method).
-     * @param  entries ArrayList<String> containing unparsed tree entries
-     */
+    * TreeList Constructor. Calls makeHash() and makes sure each String in the provided array of tree entries contains the correct number of parameters (done by calling hasEightCommas() method).
+    * @param  entries ArrayList<String> containing unparsed tree entries
+    */
     public TreeList(ArrayList<String> entries){
         makeHash();
         for (String str : entries){
-                passArgs(str);
+            passArgs(str);
         }
     }
 
     /**
-     * Reads in the data from ./species_list.txt, and fills the Hashtable<String, String> TREE_NAMES (previously declared)
-     * @throws FileNotFoundException Deals with Exceptions by printing an error message.
-     */
+    * Reads in the data from ./species_list.txt, and fills the Hashtable<String, String> TREE_NAMES (previously declared)
+    * @throws FileNotFoundException Deals with Exceptions by printing an error message.
+    */
     private void makeHash(){
         try{
             //File file = new File("species_list.txt");
@@ -97,17 +97,31 @@ public class TreeList{
     */
     private void passArgs(String input){
         String[] entry = input.split(",");
-        if (entry.length == 9 && hasCorrectSpecFormat(entry[6]))
+        if (entry.length == 9 && hasCorrectFormat(entry[5]) && !entry[5].equals("it's a Circle, so not bounded"))
         trees.add(new Tree(entry)); //I love this line
-        NUM_TREES++;
+        //NUM_TREES++;
         //System.out.println(Arrays.toString(input.split(",")));
     }
-    private Boolean hasCorrectSpecFormat(String input){
+    private Boolean hasCorrectFormat(String input){
         if (input.length() == 0)
-            return false;
+        return false;
         for (int i = 0; i < input.length(); i++){
             if (input.charAt(i) == ',' || input.charAt(i) == ' ' || input.charAt(i) == '0')
+            return false;
+        }
+        return true;
+    }
+
+    private Boolean hasCorrectFormat(String[] input){
+        for (int i = 0; i < input.length; i++){
+            //if (!input[i].matches("[A-Za-z0-9]+"));
+            //    return false;
+            if (input[i].length() == 0)
+            return false;
+            for (int j = 0; j < input[i].length(); j++){
+                if (input[j].charAt(j) == ',' || input[j].charAt(j) == ' ' || input[j].charAt(j) == '0')
                 return false;
+            }
         }
         return true;
     }
@@ -139,54 +153,66 @@ public class TreeList{
     }
 
     /**
-     * Determines the three "greenest" ZIP codes (those which contain the most trees).
-     * Please not that this is not an accurate reflection of the zipcode's actual "green-ness", because area is not taken into account.
-     * @return The greenest ZIP codes and the number of trees that each contains, respectively, formatted as a String
-     */
-    public String mostGreen(){
+    * Determines the three "greenest" ZIP codes (those which contain the most trees).
+    * Determines the three least "green" ZIP codes (those which contain the most trees).
+    * Please not that this is not an accurate reflection of the zipcode's actual "green-ness", because area is not taken into account.
+    * @return The greenest ZIP codes and the number of trees that each contains, respectively, formatted as a String
+    */
+    public String green(){
         String output = "Most green ZIP codes:\n";
         int finalists = 3;
+        int losers = 3;
         for (Tree tree : trees){
             zipcodes.add(tree.getZip());
+            NUM_TREES++;
         }
         Collections.sort(zipcodes);
         System.out.println(zipcodes.toString());
+        //System.out.println(zipcodes.toString());
         int[] podium = new int[10];
-        int current = zipcodes.get(0);
+        int[] bullpen = new int[10];
+        for (int i = 0 ; i < bullpen.length; i++){
+            bullpen[i] = 9999999;
+            //podium[i]  = 0000000;
+        }
+        System.out.println(Arrays.toString(bullpen));
+        int current = zipcodes.get(0); //represents the zipcode
+        int currentFreq = Collections.frequency(zipcodes, current);
+        //podium[0] = current
         for (int i = 0; i < NUM_TREES; i++){
-            System.out.println("yo");
-            for (int j = 0; j < podium.length; i++){
-                if (zipcodes.lastIndexOf(current) - zipcodes.indexOf(current) > podium[j]/SP){ //infinite loop somewhere in here.....
-                    podium[9] = (zipcodes.lastIndexOf(current) - zipcodes.indexOf(current)) * SP + current;
-                    Arrays.sort(podium);
-                }
+            //for (int j = 0; j < podium.length; j++){
+            currentFreq = zipcodes.lastIndexOf(current) - zipcodes.indexOf(current);
+            if (currentFreq > podium[0]/SP && !Arrays.asList(podium).contains(currentFreq * SP + current)){
+                podium[0] = (currentFreq) * SP + current;
+                System.out.println(Arrays.toString(podium));
+                Arrays.sort(podium);
+                //System.out.println(Arrays.toString(podium));
             }
+            if (currentFreq < bullpen[9]/SP && !Arrays.asList(bullpen).contains(currentFreq * SP + current)){
+                bullpen[9] = (currentFreq) * SP + current;
+                Arrays.sort(bullpen);
+            }
+            if (zipcodes.lastIndexOf(current) < NUM_TREES - 1){
+                current = zipcodes.get(zipcodes.lastIndexOf(current)+1);
+            }
+            //}
         }
         //add top three:
+        //System.out.println(Arrays.toString(podium));
         for (int i = 0; i < finalists; i++){
-            output += "\t" + podium[i]/SP + " " + podium[i]%SP;
-            if (podium[i]/SP == podium[i+1]/SP){
-                finalists++;
-            }
+            output += "\t" + podium[podium.length-i-1]/SP + " " + podium[podium.length-i-1]%SP + "\n";
+        }
+        output += "\nLeast green ZIP codes:\n";
+        for (int i = 0; i < losers; i++){
+            output += "\t" + bullpen[i]/SP + " " + bullpen[i]%SP + "\n";
         }
         return output + "\n";
     }
 
     /**
-     * Determines the three least "green" ZIP codes (those which contain the most trees).
-     * Please not that this is not an actual reflection of the zipcode's "green-ness", because area is not taken into account.
-     * @return The least green ZIP codes and the number of trees that each contains, respectively, formatted as a String.
-     */
-    public String leastGreen(){
-        String output = "Least green ZIP codes:\n";
-        //sort
-        return output + "\n";
-    }
-
-    /**
-     * Determines the Tree with greatest diameter. Returns more than one if a tie is found.
-     * @return The species, diameter, and location of the Tree with greatest diameter, formatted as a String.
-     */
+    * Determines the Tree with greatest diameter. Returns more than one if a tie is found.
+    * @return The species, diameter, and location of the Tree with greatest diameter, formatted as a String.
+    */
     public String largest(){
         //if there's a tie, return all
         String output = "The largest Tree:\n";
