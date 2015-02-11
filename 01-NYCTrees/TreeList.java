@@ -39,8 +39,6 @@ public class TreeList{
         for(String str : a){
             passArgs(str);
         }
-        mostGreen();
-        //tester();
     }
 
     /**
@@ -167,7 +165,6 @@ public class TreeList{
             NUM_TREES++;
         }
         Collections.sort(zipcodes);
-        System.out.println(zipcodes.toString());
         //System.out.println(zipcodes.toString());
         int[] podium = new int[10];
         int[] bullpen = new int[10];
@@ -175,7 +172,6 @@ public class TreeList{
             bullpen[i] = 9999999;
             //podium[i]  = 0000000;
         }
-        System.out.println(Arrays.toString(bullpen));
         int current = zipcodes.get(0); //represents the zipcode
         int currentFreq = Collections.frequency(zipcodes, current);
         //podium[0] = current
@@ -184,7 +180,6 @@ public class TreeList{
             currentFreq = zipcodes.lastIndexOf(current) - zipcodes.indexOf(current);
             if (currentFreq > podium[0]/SP && !Arrays.asList(podium).contains(currentFreq * SP + current)){
                 podium[0] = (currentFreq) * SP + current;
-                System.out.println(Arrays.toString(podium));
                 Arrays.sort(podium);
                 //System.out.println(Arrays.toString(podium));
             }
