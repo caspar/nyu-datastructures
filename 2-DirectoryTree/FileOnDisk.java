@@ -15,7 +15,6 @@ public class FileOnDisk implements Comparable<FileOnDisk>{
             return false;
         if (this.getClass() != obj.getClass())
             return false;
-        if (
 
 
         return true;
