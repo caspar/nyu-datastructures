@@ -2,12 +2,6 @@ public class FileOnDisk implements Comparable<FileOnDisk>{
 
     private int size = 0;
     public FileOnDisk(){
-        //empty constructor
-    }
-
-    public FileOnDisk(String name){
-        File f = new File(name);
-        size = new
     }
 
     public int compareTo(FileOnDisk other){
@@ -19,22 +13,15 @@ public class FileOnDisk implements Comparable<FileOnDisk>{
     }
 
     public String getAbsPath(){
-        f.getCannonicalPath();
+
     }
 
     public long getSize(){
-        f.length();
+
     }
 
     public String toString(){
-        long size = this.getSize(); //f.length()??
-        if (size < 1024)
-            return size + "Bytes";
-        if (size/1024 < 1024)
-            return (float) size/(1024.0) + "KiloBytes";
-        if (size/(1024*1024) < 1024)
-            return (float) size/(1024.0*1024) + "MegaBytes";
-        return (float) size/(1024.0*1024*1024) + "GigaBytes";
+
     }
 
     // public Boolean equals(Object obj){
