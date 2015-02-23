@@ -19,6 +19,10 @@ import java.util.*;
  */
 public class DirectorySize {
 
+	int numFiles = 20;
+	String PATH  = "";
+	long total = 0.0;
+
 	/**list of files found in the directory structure */
 	static List <FileOnDisk> listOfFiles ;
 	/**list of visited directories (kept to avoid
@@ -35,21 +39,19 @@ public class DirectorySize {
 	 */
 	public static void main(String[] args) throws IOException{
 
-		//TODO:
-		//check the number of command line arguments
-		//terminate if not sufficient
-
-
-
-		//TODO:
-		// use directory name entered from the command line
-		// verify if the directory is valid, terminate if not
-		String directory = args[0];
-		File dir = new File(directory);
-		   // verification goes here
-
-
-
+		if (args.length >= 1){
+			PATH_NAME = args[0];
+			PATH = new File(PATH_NAME);
+			if (!PATH.isDirectory()){
+				System.err.println("Specified directory does not exist");
+				System.exit(0);
+			}
+			try{
+				numFiles = Integer.args[1].parseInt();
+			}catch(Exceptions ruhRoh){
+				System.err.println("Second argument must be an integer");
+			}
+		}
 
 		//create an empty list of files
 		listOfFiles = new LinkedList<FileOnDisk> ();
@@ -71,26 +73,13 @@ public class DirectorySize {
 			System.out.printf("Total space used: %7.2f GB\n",
 					(float) size / (1024.0 * 1024*1024));
 
-
-		// Display the largest files in the directory
-		int numOfFiles = 20; //default value
-		try {
-			if (args.length == 2 )  {
-				numOfFiles = Integer.parseInt(args[1]);
-			}
-		}
-		catch (NumberFormatException ex) {
-			System.err.printf("ERROR: Invalid number of files provided." +
-					"The second argument should be an integer. \n");
-			System.exit(1);
-		}
 		System.out.printf("Largest %d files: \n", numOfFiles );
 
 		Collections.sort(listOfFiles);
 
-		for (int i = 0; i < numOfFiles; i++)
+		for (int i = 0; i < listOfFiles.size() && i < numOfFiles; i++)
 			//print from the back so that the largest files are printed
-			System.out.println(listOfFiles.get(listOfFiles.size() - i - 1) );
+			System.out.println(listOfFiles.get(listOfFiles.size() - i - 1));
 
 	}
 
@@ -113,5 +102,20 @@ public class DirectorySize {
 
 		return size;
 	}
+
+	private void exploreDir(String dirName){
+		FileOnDisk file = new File(dirName);
+		if (file.isDirectory){
+			total += file.getTotalSpace();
+			for (String dir : file.list()){
+				exploreDir(dir);
+			}
+		}
+		else{
+			total += file.size();
+			ListOfFiles.add(file);
+		}
+	}
+
 
 }
