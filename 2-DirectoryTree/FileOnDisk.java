@@ -1,54 +1,75 @@
-public class FileOnDisk implements Comparable<FileOnDisk>{
 
-    private int size = 0;
-    public FileOnDisk(){
-        //empty constructor
+import java.io.File;
+
+public class FileOnDisk implements Comparable<FileOnDisk> {
+
+    File f;
+    /**
+    * FileOnDisk constructor that accepts the file's name as a parameter
+    * @param  name The name of the file who's size is to be calculated
+    * @return      [Not Applicable]
+    */
+   String path = "";
+   long size = 00;
+    public FileOnDisk(String path, long size){
+        this.path = path;
+        this.size = size;
     }
 
-    public FileOnDisk(String name){
-        File f = new File(name);
-        size = new
-    }
-
+    /**
+    * Compares two FileOnDisk objects, based on size
+    * @param  other the FileOnDisk object that the comparison will be based on
+    * @return       a signed int, or 0, representing the relationship between the two FileOnDisk objects
+    */
     public int compareTo(FileOnDisk other){
-        if (this.getSize() = other.getSize())
+        if (this.size == other.size)
             return 0;
         if (this.getSize() > other.getSize())
             return 1;
         return -1;
     }
 
+    /**
+    * Returns the file's absolute pathname
+    * @return the cannonical pathname of the file represented by a FileOnDisk object
+    */
     public String getAbsPath(){
-        f.getCannonicalPath();
+        return path;
     }
 
+    /**
+    * Returns the FileOnDisk object's size by calling the wrapped File object's length() method
+    * @return the file's length, as a long object
+    */
     public long getSize(){
-        f.length();
+        return size;
     }
 
+    /**
+    * Converts the File's size to a human-readable string
+    * @return the File's size formatted with units
+    */
     public String toString(){
-        long size = this.getSize(); //f.length()??
-        if (size < 1024)
-            return size + "Bytes";
-        if (size/1024 < 1024)
-            return (float) size/(1024.0) + "KiloBytes";
-        if (size/(1024*1024) < 1024)
-            return (float) size/(1024.0*1024) + "MegaBytes";
-        return (float) size/(1024.0*1024*1024) + "GigaBytes";
+        long size = this.size; //f.length()??
+
+        if (size < 1024 ) //print bytes
+            return String.format("%7.2f bytes", (float) size  );
+        else if (size/1024 < 1024 )//print kilobytes
+            return String.format("%7.2f KB", (float) size / 1024.0 );
+        else if (size/1024/1024 < 1024 )//print megabytes
+            return String.format("%7.2f MB", (float) size / (1024.0 * 1024));
+        else //print gigabytes
+            return String.format("%7.2f GB", (float) size / (1024.0 * 1024*1024));
+
+        //
+        // if (size < 1024)
+        //     return size + " B ";
+        // if (size/1024 < 1024)
+        //     return (float) size/(1024.0) + " KB";
+        // if (size/(1024*1024) < 1024)
+        //     return (float) size/(1024.0*1024) + " MB";
+        // return (float) size/(1024.0*1024*1024) + " GB";
     }
 
-    // public Boolean equals(Object obj){
-    //     if (this == obj)
-    //         return true;
-    //     if (obj == null)
-    //         return false;
-    //     if (this.getClass() != obj.getClass())
-    //         return false;
-    //     if (this.getSize() != obj.getSize())
-    //         return false;
-    //
-    //     return true;
 
-
-    }
 }
