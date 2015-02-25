@@ -104,11 +104,13 @@ public class DirectorySize {
 */
 public static long getSize(File file) throws IOException {
 	int size = 0;
-	if (file.isDirectory()){
+	if (file.isDirectory() &&  ){
 		//size += file.length();
-		listOfVisitedDirs.add(file.getCanonicalPath());
-		for (File dir : file.listFiles()){
-			size += getSize(dir);
+		if (!listOfVisitedDirs.contains(file.getCanonicalPath())){
+			listOfVisitedDirs.add(file.getCanonicalPath());
+			for (File dir : file.listFiles()){
+				size += getSize(dir);
+			}
 		}
 	}
 	else {

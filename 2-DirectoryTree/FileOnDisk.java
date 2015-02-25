@@ -1,16 +1,22 @@
 
-import java.io.File;
-
+/**
+*
+* @author Caspar Lant
+* @see java.io.File
+*/
 public class FileOnDisk implements Comparable<FileOnDisk> {
 
+
     File f;
+    String path = "";
+    long size = 00;
+
     /**
-    * FileOnDisk constructor that accepts the file's name as a parameter
-    * @param  name The name of the file who's size is to be calculated
-    * @return      [Not Applicable]
+    * FileOnDisk constructor that accepts the file's name and size as parameters
+    * @param   path The path to the physical file in memory represented by the abstract FileOnDisk object
+    * @param   size The size of this file, calculated by calling the .length() method from java's native File class
+    * @return  [Not Applicable]
     */
-   String path = "";
-   long size = 00;
     public FileOnDisk(String path, long size){
         this.path = path;
         this.size = size;
@@ -23,9 +29,9 @@ public class FileOnDisk implements Comparable<FileOnDisk> {
     */
     public int compareTo(FileOnDisk other){
         if (this.size == other.size)
-            return 0;
+        return 0;
         if (this.getSize() > other.getSize())
-            return 1;
+        return 1;
         return -1;
     }
 
@@ -53,23 +59,13 @@ public class FileOnDisk implements Comparable<FileOnDisk> {
         long size = this.size; //f.length()??
 
         if (size < 1024 ) //print bytes
-            return String.format("%7.2f bytes", (float) size  );
+        return String.format("%7.2f bytes", (float) size  );
         else if (size/1024 < 1024 )//print kilobytes
-            return String.format("%7.2f KB", (float) size / 1024.0 );
+        return String.format("%7.2f KB", (float) size / 1024.0 );
         else if (size/1024/1024 < 1024 )//print megabytes
-            return String.format("%7.2f MB", (float) size / (1024.0 * 1024));
+        return String.format("%7.2f MB", (float) size / (1024.0 * 1024));
         else //print gigabytes
-            return String.format("%7.2f GB", (float) size / (1024.0 * 1024*1024));
-
-        //
-        // if (size < 1024)
-        //     return size + " B ";
-        // if (size/1024 < 1024)
-        //     return (float) size/(1024.0) + " KB";
-        // if (size/(1024*1024) < 1024)
-        //     return (float) size/(1024.0*1024) + " MB";
-        // return (float) size/(1024.0*1024*1024) + " GB";
+        return String.format("%7.2f GB", (float) size / (1024.0 * 1024*1024));
     }
-
 
 }
