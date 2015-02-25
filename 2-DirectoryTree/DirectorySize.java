@@ -6,15 +6,16 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-/**
-* This program provides a tool that given a name of a directory,
-* explores all its sub-directories and files and does two things:
-*  - computes the total size of all the files and sub-directories,
-*  - prints a list of n largest files (their sizes and absolute paths)
-*
-* @author Joanna Klukowska & Caspar Lant
-*
-*/
+/***********************************************************************
+* This program provides a tool that given a name of a directory,       *
+* explores all its sub-directories and files and does two things:      *
+*  - computes the total size of all the files and sub-directories,     *
+*  - prints a list of n largest files (their sizes and absolute paths) *
+* ...much like the $du command in linux                                *
+* @author Joanna Klukowska & Caspar Lant                               *
+* @see $du -sh 														   *
+* @see http://github.com/caspar/                                       *
+***********************************************************************/
 
 public class DirectorySize {
 
@@ -25,19 +26,15 @@ public class DirectorySize {
 	static List<String> listOfVisitedDirs;
 	static int total = 0;
 
-
 	/**
-	* This method expects one or two arguments, which it checks for validity before passing them on to the rest of the program.
+	* This method expects one or two arguments,
+	* which it checks for validity before passing them on to the rest of the program.
 	* @param args Array of arguments passed to the program. The first one
 	* is the name of the directory to be explored. The second (optional) is the
 	* max number of largest files to be printed to the screen.
 	* @throws IOException
 	*/
 	public static void main(String[] args) throws IOException{
-
-		//TODO:
-		//check the number of command line arguments
-		//terminate if not sufficient
 
 		String directory;
 		int numOfFiles = 20; //default value, if no value is specified
@@ -61,7 +58,6 @@ public class DirectorySize {
 				System.err.println("Second argument must be an integer");
 			}
 		}
-
 
 		//create an empty list of files
 		listOfFiles = new LinkedList<FileOnDisk> ();
@@ -93,7 +89,6 @@ public class DirectorySize {
 		System.out.println(listOfFiles.get(listOfFiles.size() - i - 1));
 
 	}
-
 
 	/**
 	* Recursively determines the size of a directory or file represented

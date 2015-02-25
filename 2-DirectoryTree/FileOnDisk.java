@@ -1,14 +1,17 @@
 
-/**
-*
-* @author Caspar Lant
-* @see java.io.File
-*/
+/*************************************************************
+ * This class represents a physical file on a computer's HD. *
+ * It acts as a simplified java.io.File Class,               *
+ * and stores critical information about the file.           *
+ * @author Caspar Lant                                       *
+ * @see java.io.File                                         *
+ *************************************************************/
+
 public class FileOnDisk implements Comparable<FileOnDisk> {
 
-
-    String path = "";
-    long size = 00;
+    //Two Class variables
+    String path;
+    long size;
 
     /**
     * FileOnDisk constructor that accepts the file's name and size as parameters
@@ -25,6 +28,7 @@ public class FileOnDisk implements Comparable<FileOnDisk> {
     * Compares two FileOnDisk objects, based on size
     * @param  other the FileOnDisk object that the comparison will be based on
     * @return       a signed int, or 0, representing the relationship between the two FileOnDisk objects
+    *               returns -1 if other > this, 0 if other == this, and 1 if other < this
     */
     public int compareTo(FileOnDisk other){
         if (this.size == other.size)
