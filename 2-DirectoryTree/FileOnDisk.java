@@ -7,7 +7,6 @@
 public class FileOnDisk implements Comparable<FileOnDisk> {
 
 
-    File f;
     String path = "";
     long size = 00;
 
@@ -36,7 +35,8 @@ public class FileOnDisk implements Comparable<FileOnDisk> {
     }
 
     /**
-    * Returns the file's absolute pathname
+    * Returns the file's absolute pathname, without symbolic-link directories.
+    * This is done to avoid the duplication of file objects
     * @return the cannonical pathname of the file represented by a FileOnDisk object
     */
     public String getAbsPath(){
@@ -44,7 +44,8 @@ public class FileOnDisk implements Comparable<FileOnDisk> {
     }
 
     /**
-    * Returns the FileOnDisk object's size by calling the wrapped File object's length() method
+    * Returns the FileOnDisk object's size, stored as a class variable
+    * Assumes the file's size is less than an exabyte
     * @return the file's length, as a long object
     */
     public long getSize(){
@@ -52,20 +53,21 @@ public class FileOnDisk implements Comparable<FileOnDisk> {
     }
 
     /**
-    * Converts the File's size to a human-readable string
+    * Converts the File's size to a human-readable string.
+    * First calculates the file size's order of manitude, and appends relevent units
     * @return the File's size formatted with units
     */
     public String toString(){
         long size = this.size; //f.length()??
 
         if (size < 1024 ) //print bytes
-        return String.format("%7.2f bytes", (float) size  );
+        return String.format("%7.2f bytes ", (float) size) + path;
         else if (size/1024 < 1024 )//print kilobytes
-        return String.format("%7.2f KB", (float) size / 1024.0 );
+        return String.format("%7.2f KB ", (float) size / 1024.0) + path;
         else if (size/1024/1024 < 1024 )//print megabytes
-        return String.format("%7.2f MB", (float) size / (1024.0 * 1024));
+        return String.format("%7.2f MB ", (float) size / (1024.0 * 1024)) + path;
         else //print gigabytes
-        return String.format("%7.2f GB", (float) size / (1024.0 * 1024*1024));
+        return String.format("%7.2f GB ", (float) size / (1024.0 * 1024 * 1024)) + path;
     }
 
 }
