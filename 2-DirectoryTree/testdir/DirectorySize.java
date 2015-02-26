@@ -74,22 +74,21 @@ public class DirectorySize {
 
 		// Display the total size of the directory/file
 		long size = getSize(dir);
-		if (pathOnly == 0){
-			if (size < 1024 ) //print bytes
-			System.out.printf("Total space used: \n%7.2f bytes\n", (float) size  );
-			else if (size/1024 < 1024 )//print kilobytes
-			System.out.printf("Total space used: \n%7.2f KB\n", (float) size / 1024.0 );
-			else if (size/1024/1024 < 1024 )//print megabytes
-			System.out.printf("Total space used: \n%7.2f MB\n", (float) size / (1024.0 * 1024));
-			else //print gigabytes
-			System.out.printf("Total space used: \n%7.2f GB\n", (float) size / (1024.0 * 1024*1024));
+		if (size < 1024 ) //print bytes
+		System.out.printf("Total space used: \n%7.2f bytes\n", (float) size  );
+		else if (size/1024 < 1024 )//print kilobytes
+		System.out.printf("Total space used: \n%7.2f KB\n", (float) size / 1024.0 );
+		else if (size/1024/1024 < 1024 )//print megabytes
+		System.out.printf("Total space used: \n%7.2f MB\n", (float) size / (1024.0 * 1024));
+		else //print gigabytes
+		System.out.printf("Total space used: \n%7.2f GB\n", (float) size / (1024.0 * 1024*1024));
 
-			// Display the largest files in the directory
-			if (numOfFiles == 1)
+		// Display the largest files in the directory
+		if (numOfFiles == 1)
 			System.out.printf("\nLargest file: \n");
-			else
+		else
 			System.out.printf("\nLargest %d files: \n", numOfFiles );
-		}
+
 		//Sort!
 		Collections.sort(listOfFiles);
 
