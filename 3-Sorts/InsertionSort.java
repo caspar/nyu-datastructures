@@ -1,14 +1,14 @@
 /**
- * 
+ *
  */
-package proj3;
+package 3-Sorts;
 
 /**
  * @author Joanna Klukowska
  *
  */
 public class InsertionSort <E extends Comparable <E> > implements Sorter<E> {
-	
+
 	/**
 	 * Sorts the given array using insertion sort algorithm.
 	 * @param list array to sort.
