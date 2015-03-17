@@ -8,11 +8,11 @@ public class MyTester{
     public static void main(String[] args){
         int arraySize = 20;
 
-		Integer[] list = generateRandomIntegerArray(arraySize);
+		Integer[] list = {1, 4, 3, 5, 7, 8, 4, 2, 3, 5, 7, 3, 4, 5, 7, 2, 4, 1, 2, 6, 8, 9, 9, 2, 4 , 1};
 		Sorter<Integer> arrayIntSorter;
 		System.out.printf("\nArray size: %d", arraySize);
-		System.out.printf("\nRunning merge sort: ");
-		arrayIntSorter = new MergeSort<Integer>();
+		System.out.printf("\nRunning quick sort: ");
+		arrayIntSorter = new QuickSort<Integer>();
         arrayIntSorter.sort(list);
     }
 

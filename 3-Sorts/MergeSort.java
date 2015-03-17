@@ -17,15 +17,14 @@ public class MergeSort<E extends Comparable<E> > implements Sorter<E> {
         values = list;
         SIZE = values.length;
         mergeSort(0, SIZE - 1);
-        System.out.println(Arrays.toString(values));
     }
 
     private void mergeSort(int first, int last){
         if (last > first){
-            int pivot = (first + last) / 2;
-            mergeSort(first, pivot);
-            mergeSort(pivot + 1, last);
-            merge(first, pivot, pivot + 1, last);
+            int middle = (first + last) / 2;
+            mergeSort(first, middle);
+            mergeSort(middle + 1, last);
+            merge(first, middle, middle + 1, last);
         }
     }
 
@@ -57,4 +56,13 @@ public class MergeSort<E extends Comparable<E> > implements Sorter<E> {
             values[i] = (E) temp[i];
         }
     }
+
+    // public String toString(){
+    //     //return Arrays.toString(values); //this will sometimes print ugly references...
+    //     String output = ""; //StringBuffer would be better, but IDK how to implement it.
+    //     for (E : values){
+    //         output += E.toString(); //assumes all comparables have a toString() method. IDK if this is a valid assumption.
+    //     }
+    //     return output;
+    // }
 }
