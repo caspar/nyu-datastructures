@@ -1,4 +1,3 @@
-package 3-Sorts;
 
 /**
  * The interface for the implementation of different sort algorithms.

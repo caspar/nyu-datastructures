@@ -1,7 +1,3 @@
-/**
- *
- */
-package 3-Sorts;
 
 /**
  * @author Joanna Klukowska

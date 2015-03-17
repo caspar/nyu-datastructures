@@ -3,10 +3,12 @@ import java.util.*;
 
 public class QuickSort<E extends Comparable<E> > implements Sorter<E> {
 
-    public void sort(  E[] list ){
+    E[] values;
 
+    public void sort(E[] list ){
+        values = list;
     }
 
-    public E[] quickSort(E[] list,
-    if (list.
+    public E[] quickSort(E[] list){
+    }
 }

@@ -1,4 +1,3 @@
-package 3-Sorts;
 
 import java.util.Arrays;
 import java.util.Random;
@@ -42,13 +41,13 @@ public class SortTester {
 		arrayIntSorter = new MergeSort<Integer>();
 		runTest(arrayIntSorter, list);
 
-		System.out.printf("\nRunning quick sort: ");
-		arrayIntSorter = new QuickSort<Integer>();
-		runTest(arrayIntSorter, list);
-
-		System.out.printf("\nRunning selection sort: ");
-		arrayIntSorter = new SelectionSort<Integer>();
-		runTest(arrayIntSorter, list);
+		// System.out.printf("\nRunning quick sort: ");
+		// arrayIntSorter = new QuickSort<Integer>();
+		// runTest(arrayIntSorter, list);
+		//
+		// System.out.printf("\nRunning selection sort: ");
+		// arrayIntSorter = new SelectionSort<Integer>();
+		// runTest(arrayIntSorter, list);
 
 
 		if (  !RUN_ALL ) {
@@ -66,11 +65,11 @@ public class SortTester {
 			arrayIntSorter = new MergeSort<Integer>();
 			runTest(arrayIntSorter, list);
 
-			arrayIntSorter = new QuickSort<Integer>();
-			runTest(arrayIntSorter, list);
-
-			arrayIntSorter = new SelectionSort<Integer>();
-			runTest(arrayIntSorter, list);
+			// arrayIntSorter = new QuickSort<Integer>();
+			// runTest(arrayIntSorter, list);
+			//
+			// arrayIntSorter = new SelectionSort<Integer>();
+			// runTest(arrayIntSorter, list);
 		}
 
 
@@ -86,8 +85,8 @@ public class SortTester {
 			arrayIntSorter = new MergeSort<Integer>();
 			runTest(arrayIntSorter, list);
 
-			arrayIntSorter = new QuickSort<Integer>();
-			runTest(arrayIntSorter, list);
+			// arrayIntSorter = new QuickSort<Integer>();
+			// runTest(arrayIntSorter, list);
 		}
 
 	}
