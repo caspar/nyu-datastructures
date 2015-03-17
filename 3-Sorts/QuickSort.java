@@ -4,7 +4,7 @@ import java.util.*;
 public class QuickSort<E extends Comparable<E> > implements Sorter<E> {
 
     private E[] values;
-    int SIZE;
+    private int SIZE;
 
     public void sort(E[] list ){
         values = list;
@@ -62,7 +62,7 @@ public class QuickSort<E extends Comparable<E> > implements Sorter<E> {
         return last;
     }
 
-    public void swap(int left,int right){
+    private void swap(int left,int right){
         E temp = values[left];
         values[left] = values[right];
         values[right] = temp;

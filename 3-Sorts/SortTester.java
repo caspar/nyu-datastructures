@@ -24,7 +24,7 @@ public class SortTester {
 
 	//TODO: set this to false before submitting your code
 	//set it to true to collect the results
-	private static final boolean RUN_ALL = false;
+	private static final boolean RUN_ALL = true;
 
 	public static void main(String[] args) {
 
@@ -45,9 +45,9 @@ public class SortTester {
 		arrayIntSorter = new QuickSort<Integer>();
 		runTest(arrayIntSorter, list);
 
-		// System.out.printf("\nRunning selection sort: ");
-		// arrayIntSorter = new SelectionSort<Integer>();
-		// runTest(arrayIntSorter, list);
+		System.out.printf("\nRunning selection sort: ");
+		arrayIntSorter = new SelectionSort<Integer>();
+		runTest(arrayIntSorter, list);
 
 
 		if (  !RUN_ALL ) {
@@ -67,9 +67,9 @@ public class SortTester {
 
 			arrayIntSorter = new QuickSort<Integer>();
 			runTest(arrayIntSorter, list);
-			
-			// arrayIntSorter = new SelectionSort<Integer>();
-			// runTest(arrayIntSorter, list);
+
+			arrayIntSorter = new SelectionSort<Integer>();
+			runTest(arrayIntSorter, list);
 		}
 
 
