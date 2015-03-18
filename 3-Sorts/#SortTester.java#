@@ -1,3 +1,4 @@
+
 import java.util.Arrays;
 import java.util.Random;
 
@@ -23,7 +24,7 @@ public class SortTester {
 
 	//TODO: set this to false before submitting your code
 	//set it to true to collect the results
-	private static final boolean RUN_ALL = false;
+	private static final boolean RUN_ALL = true;
 
 	public static void main(String[] args) {
 

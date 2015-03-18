@@ -1,70 +1,118 @@
-import java.io.*;
-import java.util.*;
-
+/** My implementation of the famous quicksort algorithm
+ * @author Caspar Lant
+ * @see report.pdf
+ */
 public class QuickSort<E extends Comparable<E> > implements Sorter<E> {
 
-    private E[] values;
-    private int SIZE;
+    private E[] arr;  //Unsorted array is stored as a class variable to increase runtime efficiency
+    private int SIZE; //Size of array is stored as a class variable because it is refenced with some frequency
 
+    /**
+     * Required by the Sorter interface.
+     * Orders the values of an array of generic-types by way of their compareTo(E) methods.
+     * @param list array of Objects to be sorted
+     */
     public void sort(E[] list ){
-        values = list;
-        SIZE = values.length;
+        arr = list;
+        SIZE = arr.length;
         System.out.println(SIZE);
         quickSort(0, SIZE - 1);
-        //System.out.println(Arrays.toString(values));
     }
 
-    public void quickSort(int first, int last){
-        if (first < last){
-            int pivot = split(first, last); //returns splitpoint
-            quickSort(first, pivot - 1);
-            quickSort(pivot + 1, last);
+    /**
+     * quicksort(int, int) method. Confirms that the unsorted (sub)array contains more than one object,
+     * determines the index of pivot by calling split(int, int), and
+     * calls itself, recursively, after having split the original subarray into two (around the pivot point)
+     * @param  left bound of the unsorted subarray -- the beginning
+     * @param  right bound of the unsorted subarray -- the end
+     */
+    public void quickSort(int left, int right){
+        if (left < right){
+            int pivotIndex = split(left, right); //returns splitpoint
+            quickSort(left, pivotIndex - 1);
+            quickSort(pivotIndex + 1, right);
         }
     }
 
-    private int split(int first, int last){
-        E pivot = values[first]; //middle
-        int firstIndex = first++;
-        boolean onCorrectSide; //deefs to true
+    /**
+     * Split method drawn from textbook's pseudocode.
+     * Stores a local variable of Boolean type to verify that a value is on the correct side of the pivot point
+     * (stored as a local variable of type E in the first line)
+     * @param   left bound of the unsorted subarray -- the beginning
+     * @param   right bound of the unsorted subarray -- the end
+     * @return  the index of the pivot point
+     */
+    private int split(int left, int right){
+        E pivot = arr[left]; //middle
+        int leftIndex = left;
+        left++;
+        boolean onCorrectSide; //defaults to true
 
         do {
             onCorrectSide = true;
             while (onCorrectSide){
-                if (values[first].compareTo(pivot) >= 0){
+                if (arr[left].compareTo(pivot) >= 0){
                     onCorrectSide = false;
                 }
                 else{
-                    first++;
-                    onCorrectSide = (first <= last);
+                    left++;
+                    onCorrectSide = (left <= right);
                 }
             }
 
-            onCorrectSide = (first <= last);
+            onCorrectSide = (left <= right);
 
             while (onCorrectSide){
-                if (values[last].compareTo(pivot) < 0){
+                if (arr[right].compareTo(pivot) < 0){
                     onCorrectSide = false;
                 }
                 else{
-                    last--;
-                    onCorrectSide = (first <= last);
+                    right--;
+                    onCorrectSide = (left <= right);
                 }
             }
 
-            if (first < last){
-                swap(first, last);
-                first++;
-                last--;
+            if (left < right){
+                swap(left, right);
+                left++;
+                right--;
             }
-        } while (first <= last);
+        } while (left <= right);
 
-        swap(firstIndex, last);
-        return last;
+        swap(leftIndex, right);
+        return right;
     }
 
+    /**
+     * Quickly calculates the median of the first three values of arr[].
+     * Assumes an array of int primitives for brevity's sake.
+     * This method is not implemented in QuickSort.java, but included for reference.
+     * @param  first the first index of an unsorted subarray
+     * @return       the value of the median of the first three values in aforementioned subarray.
+     */
+    // private int median(int first){
+    //     int a = arr[first  ];
+    //     int b = arr[first+1];
+    //     int c = arr[first+2];
+    //     if ((a - b) * (c - a) >= 0){
+    //         return a;
+    //     }
+    //     if ((b - a) * (c - b) >= 0 && (b <= c || (b <= a && b >= c))){
+    //         return b;
+    //     }
+    //     return c;
+    // }
+
+    /**
+     * Creates a temporary array to store one value (at index left)
+     * while it is replaced by another (at index right).
+     * Subsequently copies the stored value to index right
+     * @param  index of first object to swap
+     * @param  index of second object to swap
+     */
     private void swap(int left,int right){
-        E temp = values[left];
-        values[left] = values[right];
-        values[right] = temp;
+        E temp = arr[left];
+        arr[left] = arr[right];
+        arr[right] = temp;
     }
 }
