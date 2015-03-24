@@ -1,4 +1,63 @@
-# 2/2 - Guess Capitals Game //file parsing review
+#### 3/23 - Midterm Review
+    Topics:
+        - Adv. Java Topics
+        - Recursion (overlaps w/ sorting)
+        - Generics  (overlaps w/ everything)
+        - Performance Results:
+            - Sorting
+            - Lists, Queues, Stacks (Array-based)
+            - Reference-based lists (linked list)
+
+    1. Revisit InsertionSort
+
+    2. Generics
+        - 'E' in brackets goes not where we are going to use it as a type,
+        - but when we place restrictions on it <E extends Comparable<E> >
+        - Only reference types work with generics, not primitives
+        > implements vs. extends
+            - when you write a class header, use 'implements'.
+            - use this when working with an interface
+
+            ` public class Dog implements Comparable<Dog> `
+            ` public class Pet<E extends Comparable<E> >  `
+
+    3. Declared vs. Actual types (method calls)
+    4. polymorphism
+
+                    Pet
+            _________|___________
+            |        |          |
+           Cat      Dog   SmallCreature
+        ____|____  eat()   _____|_____
+        |       |          |         |
+      Lion  HouseCat     Mouse     Snake
+
+      ` Pet p = new Dog(); //polymorphism `
+      ` p.toString(); //calls toString() from Dog `
+      ` p.eat(); `
+      ` ArrayList<Pet> myPets = new ArrayList<Pet>(); `
+
+      When to use the `super` keyword:
+        1. call a hidden method of the superclass
+            - `super.eat()` called within HouseCat to access Cat's `eat()` method
+            - No super.super!!!
+        2. make a constructor call to the superclass's constructor
+            - 
+
+
+    5. Comparable<E> interfaced used with extends/implements
+
+
+    6. Abstract Classes vs. Interfaces
+        - AC's can have datafields, I's cannot
+        - No restrictions on how many interfaces you can implement
+
+# Self.Notes:
+    - Learn implementations of all sorts of sorts
+    - BASED ON DNHI HOMEWORKS!!
+
+
+#### 2/2  - Guess Capitals Game //file parsing review
     1. create File obj for input file
         - check the size of args[] (if wrong, quit)
         - create file obj
