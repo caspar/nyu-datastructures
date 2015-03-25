@@ -47,9 +47,9 @@ public class MergeSort<E extends Comparable<E> > implements Sorter<E> {
      */
     @SuppressWarnings("unchecked")
     private void merge(int f1, int r1, int f2, int r2){
-        Object[] temp = new Object[SIZE]; // Type-Casting to get around Generic Array creation error
-        int i = f1;
-        int firstIndex = i; //to Remember where I started. (r2 - temp.length + 1 does not work any better
+        Object[] temp = new Object[r2-f1+1]; // Type-Casting to get around Generic Array creation error
+        int i = 0;
+        int firstIndex = f1; //to Remember where I started. (r2 - temp.length + 1 does not work any better
         while (f1 <= r1 && f2 <= r2){
             if (arr[f1].compareTo(arr[f2]) <= 0){
                 temp[i++] = arr[f1++];
@@ -64,8 +64,9 @@ public class MergeSort<E extends Comparable<E> > implements Sorter<E> {
         while (f2 <= r2){
             temp[i++] = arr[f2++];
         }
+        int j = 0;
         for (i = firstIndex; i <= r2; i++){
-            arr[i] = (E) temp[i]; //type-casting as generic; poor form?
+            arr[i] = (E) temp[j++]; //type-casting as generic; poor form?
         }
     }
 }
