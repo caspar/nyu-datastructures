@@ -1,3 +1,6 @@
+/**
+ * @author Caspar Lant
+ */
 public class Stack <E extends <Comparable E>> {
 
     private Node head;
@@ -11,20 +14,30 @@ public class Stack <E extends <Comparable E>> {
         return head = null;
     }
 
+    /**
+     * Returns the element at the top of this stack without removing it from the stack.
+     * @return The element at the top of the stack, found easily using the head reference of type Node
+     */
     public E peek(){
-        // Returns the element at the top of this stack without removing it from the stack.
         return head.getData();
     }
 
+    /**
+     * Removes the element at the top of this stack and returns that element as the value of this function.
+     * @return The element at the top of the stack, found easily using the head reference of Node - type.
+     */
     public E pop(){
-        // Removes the element at the top of this stack and returns that element as the value of this function.
         E data = head.getData();
         head = head.getNext();
         return data;
     }
 
+    /**
+     * Pushes an item onto the top of this stack. Returns the item itself
+     * @param  item Genereic object to be positioned on top of stack
+     * @return      The same generic object.
+     */
     public E push(E item){
-        // Pushes an item onto the top of this stack. Returns the item itself
         Node n = new Node(item);
         n.setNext(head);
         head = n;
