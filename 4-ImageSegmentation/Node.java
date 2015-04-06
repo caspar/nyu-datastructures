@@ -1,13 +1,17 @@
-public class Node<E extends Comparable<E>>{
+/**
+ * @author Caspar Lant<E>
+ *
+ */
+public class Node<E>{
 
     private E data;
     private Node next;
 
-    Node(E data){
+    public Node(E data){
         this.data = data;
     }
 
-    Node(){
+    public Node(){
         this.data = null; //not quite necessary...
     }
 

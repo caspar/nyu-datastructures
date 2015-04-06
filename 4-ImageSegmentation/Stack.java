@@ -1,33 +1,38 @@
 /**
  * @author Caspar Lant
+ *
  */
-public class Stack <E extends <Comparable E>> {
+public class Stack<E>{
 
     private Node head;
 
     public Stack(){
-        Stack stack = new Stack(); //does this work?
+        //Stack stack = new Stack(); //does this work?
     }
 
     public boolean empty(){
         // Tests if this stack is empty
-        return head = null;
+        return head == null;
     }
 
     /**
      * Returns the element at the top of this stack without removing it from the stack.
      * @return The element at the top of the stack, found easily using the head reference of type Node
      */
+    //@SuppressWarnings("unchecked")
     public E peek(){
-        return head.getData();
+        if (head == null)
+            return null;
+        return (E) head.getData();
     }
 
     /**
      * Removes the element at the top of this stack and returns that element as the value of this function.
      * @return The element at the top of the stack, found easily using the head reference of Node - type.
      */
+    //@SuppressWarnings("unchecked")
     public E pop(){
-        E data = head.getData();
+        E data = (E) head.getData();
         head = head.getNext();
         return data;
     }
