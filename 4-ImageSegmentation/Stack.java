@@ -4,7 +4,7 @@
  */
 public class Stack<E>{
 
-    private Node head;
+    private Node<E> head;
 
     public Stack(){
         //Stack stack = new Stack(); //does this work?
@@ -23,7 +23,7 @@ public class Stack<E>{
     public E peek(){
         if (head == null)
             return null;
-        return (E) head.getData();
+        return head.getData();
     }
 
     /**
@@ -32,7 +32,7 @@ public class Stack<E>{
      */
     //@SuppressWarnings("unchecked")
     public E pop(){
-        E data = (E) head.getData();
+        E data = head.getData();
         head = head.getNext();
         return data;
     }
@@ -43,7 +43,7 @@ public class Stack<E>{
      * @return      The same generic object.
      */
     public E push(E item){
-        Node n = new Node(item);
+        Node<E> n = new Node<E>(item);
         n.setNext(head);
         head = n;
         return item;

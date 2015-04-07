@@ -1,7 +1,7 @@
 //package proj4;
 
 import java.util.ArrayList;
-//import java.util.Stack;
+//import java.util.Queue;
 
 import processing.core.PApplet;
 import processing.core.PImage;
@@ -15,7 +15,7 @@ import processing.core.PImage;
  *
  * Once the algorithm is run each region is shown in a grayscale value
  * corresponding to the seed that originated that region. All pixels
- * that do not belong to any of the regions are shown in dark red color.
+ * that do not belong to any of the regions are shown in darkred color.
  *
  * The user selects the seeds by clicking on the image with a mouse.
  * The program responds to the following key strokes
@@ -60,7 +60,7 @@ public class RegionGrowing extends PApplet {
 			};
 
 	//name of the image file to be used in the interactive run
-	String fileName = allFileNames[0];
+	String fileName = allFileNames[2];
 
 	//flags controlling the mode of the program
 	//  if false, run in interactive mode
@@ -277,9 +277,10 @@ public class RegionGrowing extends PApplet {
 	 *                 calculated
 	 */
 	public void getRegionBFS( int x, int y, int value, int [] pixels, int [] imagePixelsCopy ) {
-		//TODO: implement this method
-		//             you need to provide your own queue implementation for use in this method
-
+		// Queue<Integer> pixelLocations = new Queue<Integer>();
+		//
+		// float pixDifference;
+		// pixelLocations.push(y*img.width + x );
 	}
 
 	/**

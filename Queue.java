@@ -7,8 +7,8 @@
 public class Queue<E>{
     //creates Node objects, organizes them in a Queue.
 
-    private Node head;
-    private Node tail;
+    private Node<E> head;
+    private Node<E> tail;
 
     public Queue(){
         //instantiate queue class. (I don't think this is necessary)
