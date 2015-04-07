@@ -19,7 +19,6 @@ public class Stack<E>{
      * Returns the element at the top of this stack without removing it from the stack.
      * @return The element at the top of the stack, found easily using the head reference of type Node
      */
-    //@SuppressWarnings("unchecked")
     public E peek(){
         if (head == null)
             return null;
@@ -30,7 +29,6 @@ public class Stack<E>{
      * Removes the element at the top of this stack and returns that element as the value of this function.
      * @return The element at the top of the stack, found easily using the head reference of Node - type.
      */
-    //@SuppressWarnings("unchecked")
     public E pop(){
         E data = head.getData();
         head = head.getNext();

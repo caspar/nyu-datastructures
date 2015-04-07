@@ -36,8 +36,8 @@ public class Node<E>{
     }
 
     /**
-     * [getData description]
-     * @return [description]
+     * Method implemented to return the Object that the `data` variable references in this instance of Node
+     * @return The referenced Object
      */
     public E getData(){
         return data;
