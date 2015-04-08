@@ -2,7 +2,7 @@
  * @author Caspar Lant
  *
  */
-public class Node<E>{
+public class BSTNode<E extends Comparable<E>>{
 
     private E data = null;
     private Node<E> next = null;
@@ -17,6 +17,10 @@ public class Node<E>{
      */
     public Node(){
         this.data = null; //not quite necessary...
+    }
+
+    public int compareTo(Node<E> node){
+        if (node.getData() >
     }
 
     /**

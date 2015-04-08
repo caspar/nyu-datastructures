@@ -60,7 +60,7 @@ public class RegionGrowing extends PApplet {
 			};
 
 	//name of the image file to be used in the interactive run
-	String fileName = allFileNames[2];
+	String fileName = allFileNames[5];
 
 	//flags controlling the mode of the program
 	//  if false, run in interactive mode
@@ -250,7 +250,7 @@ public class RegionGrowing extends PApplet {
 			py = index / img.width;
 			pixels[index] = color(value,value,value);
 
-			if (px!=0 && px!=img.width-1 && py!=0 && py!=img.height-1) {
+			if (px!=0 && px!=img.width-1 && py!=0 && py!=img.height-1) { //for BFS, just play with these lines
 				for (int nx = px-1; nx <= px+1; nx++) {
 					for (int ny = py-1; ny <= py+1; ny++) {
 						pixDifference = Math.abs( red(imagePixelsCopy[y*img.width+x]) - red(imagePixelsCopy[ny*img.width+nx]));

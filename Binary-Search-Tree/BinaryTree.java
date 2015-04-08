@@ -1,0 +1,3 @@
+class BinaryTree extends Tree{
+
+}

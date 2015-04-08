@@ -50,7 +50,7 @@ public class Queue<E>{
     /**
      * Adds an item to the front of this queue. Returns the item itself.
      * @param  item Generic object to be added to the queue
-     * @return      This is the same Generic object. I don't know why this is convention; it doesn't seem to be of much use. 
+     * @return      This is the same Generic object. I don't know why this is convention; it doesn't seem to be of much use.
      *              (I guess it ocassionally de-necessitates the creation of a reference...)
      */
     public E enqueue(E item){
