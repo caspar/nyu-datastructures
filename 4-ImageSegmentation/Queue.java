@@ -6,8 +6,7 @@
  */
 public class Queue<E>{
 
-    private Node<E> head;
-    private Node<E> tail;
+    private Node<E> head = null;
 
     public Queue(){
         //instantiate queue class. (I don't think this is necessary)
@@ -55,13 +54,15 @@ public class Queue<E>{
      */
     public E enqueue(E item){
         Node<E> n = new Node<E>(item);
-        if(head == null){ //if head == tail, length == 1
+        Node<E> current = head;
+        if (head == null){
             head = n;
-            tail = n;
+            return item;
         }
-        else
-            tail.setNext(n);
+        while(current.getNext() != null){
+            current = current.getNext();
+        }
+        current.setNext(n);
         return item;
     }
-
 }

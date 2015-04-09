@@ -16,7 +16,6 @@ public class Node<E>{
      * @return Not applicable.
      */
     public Node(){
-        this.data = null; //not quite necessary...
     }
 
     /**

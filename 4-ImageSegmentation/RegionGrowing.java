@@ -276,11 +276,41 @@ public class RegionGrowing extends PApplet {
 	 * @param imagePixelsCopy array of original pixels based on which the region is
 	 *                 calculated
 	 */
-	public void getRegionBFS( int x, int y, int value, int [] pixels, int [] imagePixelsCopy ) {
-		// Queue<Integer> pixelLocations = new Queue<Integer>();
-		//
-		// float pixDifference;
-		// pixelLocations.push(y*img.width + x );
+	public void getRegionBFS( int x, int y, int value, int [] outputImage, int [] inputImage ) {
+		int px, py, index;
+		//compute the threshold based on the standard deviation of the grayscale values
+		//of the pixels in the 11x11 neighborhood of the seed
+		float threshold = 0;
+		for (int nx = x - 5; nx < x + 5; nx++) {
+			for (int ny = y - 5; ny < y + 5; ny++) {
+				if (ny < 0 || ny >= img.height || nx < 0 || nx >= img.width) continue;
+				threshold +=  red(imagePixelsCopy[ny*img.width+nx]);
+			}
+		}
+		threshold = 2 * (float) Math.sqrt(threshold/121);
+
+		Queue<Integer> pixelLocations = new Queue<Integer>();
+
+		float pixDifference;
+		pixelLocations.enqueue(y*img.width + x );
+		while (!pixelLocations.empty()) {
+			index = pixelLocations.dequeue();
+			px = index % img.width;
+			py = index / img.width;
+
+			if (px!=0 && px!=img.width-1 && py!=0 && py!=img.height-1) {
+				for (int ny = py-1; ny <= py+1; ny++) {
+					for (int nx = px-1; nx <= px+1; nx++) {
+						pixDifference = Math.abs( red(imagePixelsCopy[y*img.width+x]) - red(imagePixelsCopy[ny*img.width+nx]));
+						if ( pixDifference <= threshold && pixels[ny*img.width+nx] == back ) {
+							pixelLocations.enqueue(ny*img.width+nx);
+							pixels[ny*img.width+nx] = color(value,value,value);
+						}
+					}
+				}
+			}
+		}
+
 	}
 
 	/**
