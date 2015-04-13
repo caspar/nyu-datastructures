@@ -60,7 +60,7 @@ public class RegionGrowing extends PApplet {
 			};
 
 	//name of the image file to be used in the interactive run
-	String fileName = allFileNames[5];
+	String fileName = allFileNames[6];
 
 	//flags controlling the mode of the program
 	//  if false, run in interactive mode

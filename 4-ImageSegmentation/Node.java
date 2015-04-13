@@ -1,6 +1,9 @@
 /**
+ * Generic node object for use in Singly-Linked Lists, Stacks, Queues, and other abstract data types.
+ * Stores an object (`data`), as well as a reference to another Node object
  * @author Caspar Lant
- *
+ * @see http://github.com/caspar/
+ *      http://casparlant.com/
  */
 public class Node<E>{
 

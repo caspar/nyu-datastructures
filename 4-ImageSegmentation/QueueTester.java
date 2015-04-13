@@ -24,7 +24,7 @@ public class QueueTester{
         q.dequeue(); //30
         System.out.println(q.peek()); //"30
         q.dequeue(); //30
-        System.out.println(q.peek()); 
+        System.out.println(q.peek());
 
     }
 }

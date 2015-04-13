@@ -2,14 +2,16 @@
  * Implementation of Queue ADT using references rather than an array.
  * Creates Node objects, organizes them in a queue.
  * @author Caspar Lant
- * @see github.com/caspar
+ * @see http://github.com/caspar/
+ *      http://casparlant.com/
  */
 public class Queue<E>{
 
     private Node<E> head = null;
+    private Node<E> tail = null; //Queue implementation with a tail reference is quicker that the more iterative approach
 
     public Queue(){
-        //instantiate queue class. (I don't think this is necessary)
+        //instantiate queue class. (I don't think this is necessary but it was detailed in the assignment description)
     }
 
     /**
@@ -41,7 +43,7 @@ public class Queue<E>{
         if (head.getNext() == null)
             head = null;
         else{
-            head = head.getNext(); //does this work if head.next is null?
+            head = head.getNext();
         }
         return data;
     }
@@ -50,19 +52,22 @@ public class Queue<E>{
      * Adds an item to the front of this queue. Returns the item itself.
      * @param  item Generic object to be added to the queue
      * @return      This is the same Generic object. I don't know why this is convention; it doesn't seem to be of much use.
-     *              (I guess it ocassionally de-necessitates the creation of a reference...)
+     *              (I guess it ocassionally eliminates need for the creation of a reference...)
      */
     public E enqueue(E item){
         Node<E> n = new Node<E>(item);
         Node<E> current = head;
         if (head == null){
-            head = n;
-            return item;
+            head = tail = n; //teehee (this is terrible) (actually, this may help out the compiler...) (probably not though)
         }
-        while(current.getNext() != null){
-            current = current.getNext();
+        // //Tail-less solution:
+        // while(current.getNext() != null){
+        //     current = current.getNext();
+        // }
+        else{
+            tail.setNext(n);
+            tail = n;
         }
-        current.setNext(n);
         return item;
     }
 }
