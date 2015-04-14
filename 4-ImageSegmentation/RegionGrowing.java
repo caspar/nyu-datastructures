@@ -1,7 +1,7 @@
 //package proj4;
 
 import java.util.ArrayList;
-//import java.util.Queue;
+import java.util.LinkedList;
 
 import processing.core.PApplet;
 import processing.core.PImage;
@@ -60,7 +60,7 @@ public class RegionGrowing extends PApplet {
 			};
 
 	//name of the image file to be used in the interactive run
-	String fileName = allFileNames[6];
+	String fileName = allFileNames[10];
 
 	//flags controlling the mode of the program
 	//  if false, run in interactive mode
@@ -121,8 +121,8 @@ public class RegionGrowing extends PApplet {
 		}
 
 		//generate 10 random seeds within the image
-		if (keyPressed == true && key == 'x'&&seeds.size() < 10) {
-			for (int i = 0; i < 10; i++) {
+		if (keyPressed == true && key == 'x'&&seeds.size() < 40) {
+			for (int i = 0; i < 40; i++) {
 				seeds.add( (int)random( pixels.length));
 			}
 		}
@@ -333,16 +333,16 @@ public class RegionGrowing extends PApplet {
 
 		//if image is too large for the screen, resize it
 		float resizeFactor;
-		if (img.height > 0.8*displayHeight ) {
-			resizeFactor = (0.8f*displayHeight) / img.height;
-			img.resize((int)(img.width * resizeFactor),
-					(int)(img.height*resizeFactor) );
-		}
-		if (img.width > 0.8*displayWidth ) {
-			resizeFactor = (0.8f*displayWidth) / img.width;
-			img.resize((int)(img.width * resizeFactor),
-					(int)(img.height*resizeFactor) );
-		}
+		// if (img.height > 0.8*displayHeight ) {
+		// 	resizeFactor = (0.8f*displayHeight) / img.height;
+		// 	img.resize((int)(img.width * resizeFactor),
+		// 			(int)(img.height*resizeFactor) );
+		// }
+		// if (img.width > 0.8*displayWidth ) {
+		// 	resizeFactor = (0.8f*displayWidth) / img.width;
+		// 	img.resize((int)(img.width * resizeFactor),
+		// 			(int)(img.height*resizeFactor) );
+		// }
 
 		//convert image to grayscale
 		img.filter(GRAY);
