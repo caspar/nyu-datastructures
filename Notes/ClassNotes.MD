@@ -1,3 +1,29 @@
+#### 4/20 - BSTs
+
+                 4
+               /   \
+              2     8
+             / \   / \
+            1   3 7   9
+
+    inorder(n): //root is middle
+    > [1, 2, 3, 4, 5, 8, 9]
+    - `inorder(n.left)`
+    - `print(n.data)`
+    - `inorder(n.right)`
+
+    preorder(n): //root is first
+    > [4, 2, 1, 3, 8, 7, 9]
+    - `print(n.data)`
+    - `preorder(n.left)`
+    - `preorder(n.right)`
+
+    postorder(n): //root comes last
+    > [1, 3, 2, 4, 9, 8, 7]
+    - `postorder(n.left)`
+    - `postorder(n.right)`
+    - `print(n)`
+
 #### 3/23 - Midterm Review
     Topics:
         - Adv. Java Topics
@@ -42,7 +68,7 @@
             - `super.eat()` called within HouseCat to access Cat's `eat()` method
             - No super.super!!!
         2. make a constructor call to the superclass's constructor
-            - 
+            -
 
 
     5. Comparable<E> interfaced used with extends/implements
