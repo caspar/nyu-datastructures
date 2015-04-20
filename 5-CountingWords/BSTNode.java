@@ -1,6 +1,6 @@
 /**
  * @author Caspar Lant
- *
+ * @see github.com/caspar
  */
 public class BSTNode<E extends Comparable<E>>{
 

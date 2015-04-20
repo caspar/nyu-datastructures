@@ -1,3 +1,7 @@
+/**
+ * @author Caspar Lant
+ * @see github.com/caspar
+ */
 class BinarySearchTree{
 
     private BSTNode<E> root;
