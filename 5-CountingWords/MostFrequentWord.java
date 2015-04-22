@@ -4,4 +4,5 @@
  */
 public class MostFrequentWord {
 
+    private String mostFreq = "";
 }
