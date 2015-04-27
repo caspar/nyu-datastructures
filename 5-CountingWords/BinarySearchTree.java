@@ -4,7 +4,7 @@
 * @see github.com/caspar
 */
 
-class BinarySearchTree<E>{
+class BinarySearchTree<E extends Comparable<E> >{
 
     private BSTNode<E> root;
     private E data;
@@ -22,7 +22,7 @@ class BinarySearchTree<E>{
     }
 
     public int size(BSTNode<E> node){
-        if (node = null)
+        if (node == null)
         return 0;
         return 1 + size(node.getRight()) + size(node.getLeft());
     }
@@ -43,29 +43,28 @@ class BinarySearchTree<E>{
 
     }
 
-
-    public boolean contains(data, BSTNode<E> current){
+    public boolean contains(E data, BSTNode<E> current){
         if (current == null){
             return false;
         }
-        if (data < current.getData()){
+        if (data.compareTo(current.getData()) < 0){
             return contains(data, current.getLeft());
         }
-        if (data > current.getData()){
+        if (data.compareTo(current.getData()) > 0){
             return contains(data, current.getRight());
         }
         return true; //data == current.getData();
     }
 
-    public E get(data, BSTNode<E> current){
+    public E get(E data, BSTNode<E> current){
         if (current == null){
-            return false;
+            return null; //some error case
         }
-        if (data < current.getData()){
-            return contains(data, current.getLeft());
+        if (data.compareTo(current.getData()) < 0){
+            return get(data, current.getLeft());
         }
-        if (data > current.getData()){
-            return contains(data, current.getRight());
+        if (data.compareTo(current.getData()) > 0){
+            return get(data, current.getRight());
         }
         return current.getData(); //data == current.getData();
     }
@@ -77,23 +76,32 @@ class BinarySearchTree<E>{
     //
     // }
 
+    //creates a node, adds it to the BST, returns a reference to it (so the user can hang on to it if she chooses)
+    public BSTNode<E> add(E data){
+        //return add(new BSTNode<E>(data) );
+        return add(root, data);
+    }
+
+    private BSTNode<E> add(BSTNode<E> node, E data){
+        if (node == null)
+            root = new BSTNode<E>(data);
+        if (data.compareTo(node.getData()) < 0){
+            node.setLeft( add(node.getLeft(), data) );
+        }
+        else{
+            node.setRight( add(node.getRight(), data) );
+        }
+
+    }
+
     /**
     * Only remove leaf node
     * @param   node
     * @param   data
     * @return  node
     */
-
     public BSTNode<E> remove(E data){
         remove(root, data);
-    }
-
-    public BSTNode<E> remove(BSTNode<E> node, E data){
-        if (node == null){
-            return null;
-        }
-        else if (data.compareTo(node.getData())
-
     }
 
     public BSTNode<E> remove(BSTNode<E> node, E data){//data is ____ ?
@@ -130,7 +138,7 @@ class BinarySearchTree<E>{
             return null;
         }
         BSTNode<E> current = n.getLeft();
-        getPredecessorRec(current)
+        getPredecessorRec(current);
 
     }
 
