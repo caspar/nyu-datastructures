@@ -20,7 +20,7 @@ public class BSTNode<E extends Comparable<E>>{
     }
 
     public int compareTo(BSTNode<E> node){
-        return this.data(compareTo(node.data));
+        return this.data.compareTo(node.getData());
     }
 
     public boolean hasLeft(){

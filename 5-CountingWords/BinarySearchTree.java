@@ -1,12 +1,11 @@
 /**
 * @author Caspar Lant
-*
-* @see github.com/caspar
+* @see    github.com/caspar
+*         casparlant.com
 */
-
 class BinarySearchTree<E extends Comparable<E> >{
 
-    private BSTNode<E> root;
+    private BSTNode<E> root; //Top of the tree
     private E data;
 
     public BinarySearchTree(){
@@ -40,7 +39,9 @@ class BinarySearchTree<E extends Comparable<E> >{
         if (array[mid] < key){
             return search(array, key, min-1, max);
         }
-
+        else{
+            return search(array, key, min, max+1); //Not sure about this; assuming symmetry
+        }
     }
 
     public boolean contains(E data, BSTNode<E> current){
@@ -91,17 +92,18 @@ class BinarySearchTree<E extends Comparable<E> >{
         else{
             node.setRight( add(node.getRight(), data) );
         }
-
+        //TODO
+        return node;
     }
 
-    /**
+    /**    /**
     * Only remove leaf node
     * @param   node
     * @param   data
     * @return  node
     */
     public BSTNode<E> remove(E data){
-        remove(root, data);
+        return remove(root, data);
     }
 
     public BSTNode<E> remove(BSTNode<E> node, E data){//data is ____ ?
@@ -127,24 +129,36 @@ class BinarySearchTree<E extends Comparable<E> >{
         if (node.getRight() == null){
             return node.getLeft();
         }
+
         E data = getPredecessor(node);
         node.setData(data);
         node.setLeft( remove(node.getLeft(), data) );
         return node;
     }
 
+    /**
+     * Returns the the returns the value of `data` of the node object that preceeds the specified node.
+     * This value is computed by recursively finding the rightmost node in the specified node's left subtree.
+     * @param  node Specified BSTNode object. Will get deleted in most use-cases
+     * @return      The node's value
+     */
     private E getPredecessor(BSTNode<E> node){
         if (node.getLeft() == null){
             return null;
         }
-        BSTNode<E> current = n.getLeft();
-        getPredecessorRec(current);
 
+        BSTNode<E> current = node.getLeft();
+        return getPredecessorRec(current);
     }
 
-    private E getPrecessorRec(BSTNode<E> node){
+    /**
+     * Continuation of the getPredecessor method specified above. Recursive implementation.
+     * @param  node Specified BSTNode object. Will get deleted in most use-cases
+     * @return      The node's value
+     */
+    private E getPredecessorRec(BSTNode<E> node){
         if (node.getRight() == null)
-            return node;
+            return node.getData();
         else
             return getPredecessorRec(node.getRight());
     }
@@ -153,8 +167,8 @@ class BinarySearchTree<E extends Comparable<E> >{
         if (node == null){
             return null;
         }
-        node.setLeft( traverse(node.getLeft()) );
-        node.setRight( traverse(node.getRight()) );
+        traverse(node.getLeft());
         System.out.println(node);
+        traverse(node.getRight());
     }
 }
