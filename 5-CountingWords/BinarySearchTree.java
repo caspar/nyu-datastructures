@@ -83,7 +83,23 @@ class BinarySearchTree<E>{
     * @param   data
     * @return  node
     */
+
+    public BSTNode<E> remove(E data){
+        remove(root, data);
+    }
+
+    public BSTNode<E> remove(BSTNode<E> node, E data){
+        if (node == null){
+            return null;
+        }
+        else if (data.compareTo(node.getData())
+
+    }
+
     public BSTNode<E> remove(BSTNode<E> node, E data){//data is ____ ?
+        if (node == null){
+            return null;
+        }
         if (data.compareTo(node.getData()) < 0) {
             node.setLeft( remove(node.getLeft(), data) );
         }
@@ -91,17 +107,46 @@ class BinarySearchTree<E>{
             node.setRight( remove(node.getRight(), data) );
         }
         else { //data.CompareTo(node.getData) == 0;
-            return null;
+            delete(node);
         }
         return node;
     }
 
-    public BSTNode<E> traverse(BSTNode<E> node){ //difference vs. previous traversals is that this has a base case
+    private BSTNode<E> delete(BSTNode<E> node){
+        if (node.getLeft() == null){
+            return node.getRight();
+        }
+        if (node.getRight() == null){
+            return node.getLeft();
+        }
+        E data = getPredecessor(node);
+        node.setData(data);
+        node.setLeft( remove(node.getLeft(), data) );
+        return node;
+    }
+
+    private E getPredecessor(BSTNode<E> node){
+        if (node.getLeft() == null){
+            return null;
+        }
+        BSTNode<E> current = n.getLeft();
+        getPredecessorRec(current)
+
+    }
+
+    private E getPrecessorRec(BSTNode<E> node){
+        if (node.getRight() == null)
+            return node;
+        else
+            return getPredecessorRec(node.getRight());
+    }
+
+    public void traverse(BSTNode<E> node){ //difference vs. previous traversals is that this has a base case
         if (node == null){
             return null;
         }
         node.setLeft( traverse(node.getLeft()) );
         node.setRight( traverse(node.getRight()) );
-        return node;
+        System.out.println(node);
     }
 }
