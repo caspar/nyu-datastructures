@@ -13,15 +13,14 @@ public class BSTNode<E extends Comparable<E>>{
         this.data = data;
     }
 
-    public BSTNode(){
+    public BSTNode(E data, BSTNode<E> left, BSTNode<E> right){
+        this.data  = data;
+        this.left  = left;
+        this.right = right;
     }
 
     public int compareTo(BSTNode<E> node){
-        if (node.getData() > data)
-            return -1;
-        if (node.getData() < data)
-            return 1;
-        return 0;
+        return this.data(compareTo(node.data));
     }
 
     public boolean hasLeft(){
