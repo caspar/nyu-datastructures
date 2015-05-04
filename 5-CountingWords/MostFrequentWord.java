@@ -8,6 +8,12 @@ public class MostFrequentWord {
     public SortedLinkedList<String> list = new SortedLinkedList();
 
     public static void main(String[] args) {
-        
+        try{
+            final String IN_NAME = args[0];
+            final int CUTOFF = args[1];
+            final String OUT_NAME = args[2];
+        }catch(Exception oops){
+            System.out.println(oops);
+        }
     }
 }

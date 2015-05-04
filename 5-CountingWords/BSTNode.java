@@ -5,6 +5,7 @@
 public class BSTNode<E extends Comparable<E>>{
 
     private E data = null;
+    private int count = 1;
 
     private BSTNode<E> left  = null;
     private BSTNode<E> right = null;
@@ -19,8 +20,13 @@ public class BSTNode<E extends Comparable<E>>{
         this.right = right;
     }
 
-    public int compareTo(BSTNode<E> node){
-        return this.data.compareTo(node.getData());
+    public int compareTo(BSTNode<E> other){
+        if (this.getCount() > other.getCount())
+            return 1;
+        if (this.getCount() < other.getCount())
+            return -1;
+        else
+            return 0;
     }
 
     public boolean hasLeft(){
@@ -56,6 +62,14 @@ public class BSTNode<E extends Comparable<E>>{
 
     public void setData(E data){
         this.data = data;
+    }
+
+    public int getCount(){
+        return count;
+    }
+
+    public int increment(){
+        return count++;
     }
 
 }

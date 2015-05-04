@@ -8,6 +8,8 @@
 public class Node<E extends Comparable<E> >{
 
     private E data = null;
+    private int count = 1;
+
     private Node<E> next = null;
 
     public Node(E data){
@@ -51,6 +53,25 @@ public class Node<E extends Comparable<E> >{
      */
     public void setData(E data){
         this.data = data;
+    }
+
+    public int getCount(){
+        return count;
+    }
+
+    public void setCount(int count){
+        this.count = count;
+    }
+
+    public int compareTo(Node<E> other){
+        if (other != null)
+            return 1;
+        if (this.getCount() > other.getCount())
+            return 1;
+        if (this.getCount() < other.getCount())
+            return -1;
+        else
+            return 0;
     }
 
 }
