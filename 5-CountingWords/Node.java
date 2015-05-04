@@ -2,13 +2,13 @@
  * Generic node object for use in Singly-Linked Lists, Stacks, Queues, and other abstract data types.
  * Stores an object (`data`), as well as a reference to another Node object
  * @author Caspar Lant
- * @see http://github.com/caspar/
- *      http://casparlant.com/
+ * @see     github.com/caspar
+ *          casparlant.com
  */
-public class Node<E extends Comparable<E> >{
+public class Node<E extends Comparable<E> > implements Comparable< Node<E> >{
 
     private E data = null;
-    private int count = 1;
+    private int count = 1; //starts at one for obvious reasons
 
     private Node<E> next = null;
 
@@ -55,20 +55,35 @@ public class Node<E extends Comparable<E> >{
         this.data = data;
     }
 
+    /**
+     * Returns the value of the `count` field in this instance of Node<E> without changing its value (see below)
+     * @return The value of `count`.
+     */
     public int getCount(){
         return count;
     }
 
-    public void setCount(int count){
-        this.count = count;
+    /**
+     * This method is less useful than a setCount(int) method,
+     * but because I will only need to increment the Node's count as a iterate through a given word file, this is fine.
+     * It's probably quicker than setCount(getCount() + 1);
+     * @return the updated count.
+     */
+    public int increment(){
+        return count++;
     }
 
+    /**
+     * Compares this instance of Node<E> to another Node<E> object based on count
+     * @param  other Another Node<E>
+     * @return       An int representative of the relationship between the two node's `count` fields.
+     */
     public int compareTo(Node<E> other){
         if (other != null)
             return 1;
-        if (this.getCount() > other.getCount())
+        if (this.count > other.getCount())
             return 1;
-        if (this.getCount() < other.getCount())
+        if (this.count < other.getCount())
             return -1;
         else
             return 0;

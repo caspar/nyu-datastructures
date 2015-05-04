@@ -12,17 +12,13 @@ class BinarySearchTree<E extends Comparable<E> >{
 
     }
 
-    public void sort(){
-        //TODO
-    }
-
     public int size(){
         return size(root);
     }
 
     public int size(BSTNode<E> node){
         if (node == null)
-        return 0;
+            return 0;
         return 1 + size(node.getRight()) + size(node.getLeft());
     }
 
@@ -80,12 +76,19 @@ class BinarySearchTree<E extends Comparable<E> >{
     //creates a node, adds it to the BST, returns a reference to it (so the user can hang on to it if she chooses)
     public BSTNode<E> add(E data){
         //return add(new BSTNode<E>(data) );
-        return add(root, data);
+        if (root == null){
+            root = new BSTNode<E>(data);
+            return root;
+        }
+        else
+            return add(root, data);
     }
 
     private BSTNode<E> add(BSTNode<E> node, E data){
-        if (node == null)
-            root = new BSTNode<E>(data);
+        if (node == null){
+            node = new BSTNode<E>(data);
+            return node;
+        }
         if (data.compareTo(node.getData()) < 0){
             node.setLeft( add(node.getLeft(), data) );
         }
@@ -163,12 +166,16 @@ class BinarySearchTree<E extends Comparable<E> >{
             return getPredecessorRec(node.getRight());
     }
 
+    public void traverse(){
+        traverse(root);
+    }
+
     public void traverse(BSTNode<E> node){ //difference vs. previous traversals is that this has a base case
         if (node == null){
-            return null;
+            return;
         }
         traverse(node.getLeft());
-        System.out.println(node);
+        System.out.println(node.getData());
         traverse(node.getRight());
     }
 }

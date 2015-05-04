@@ -13,7 +13,7 @@ public class MostFrequentWord {
             final int CUTOFF = args[1];
             final String OUT_NAME = args[2];
         }catch(Exception oops){
-            System.out.println(oops);
+            System.out.println("Please provide three parameters\n" + oops);
         }
     }
 }

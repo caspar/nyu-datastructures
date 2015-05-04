@@ -5,6 +5,7 @@ class BSTTester {
         for (int i = 1; i < 10; i++){
             tree.add((Integer) i);
         }
+        tree.traverse();
     }
 
 }
