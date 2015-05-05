@@ -69,7 +69,7 @@ public class Node<E extends Comparable<E> > implements Comparable< Node<E> >{
      * It's probably quicker than setCount(getCount() + 1);
      * @return the updated count.
      */
-    public int increment(){
+    public int incrementCount(){
         return count++;
     }
 

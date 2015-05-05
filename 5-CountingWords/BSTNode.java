@@ -22,6 +22,7 @@ public class BSTNode<E extends Comparable<E>> implements Comparable< BSTNode<E> 
     }
 
     public int compareTo(BSTNode<E> other){
+        // return this.data.compareTo(other.getData());
         if (this.count > other.getCount())
             return 1;
         if (this.count < other.getCount())
@@ -111,7 +112,7 @@ public class BSTNode<E extends Comparable<E>> implements Comparable< BSTNode<E> 
      * It's probably quicker than setCount(getCount() + 1);
      * @return the updated count
      */
-    public int increment(){
+    public int incrementCount(){
         return count++;
     }
 

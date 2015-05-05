@@ -4,16 +4,52 @@
  */
 public class MostFrequentWord {
 
-    public BinarySearchTree<String> tree = new BinarySearchTree<String>();
-    public SortedLinkedList<String> list = new SortedLinkedList();
+    private BinarySearchTree<String> tree = new BinarySearchTree<String>();
+    private SortedLinkedList<String> list = new SortedLinkedList();
+
+    public  ArrayList<String> words = new ArrayList<String>(); //check this syntax; justify its publicity
+
+    public final String FILENAME; //final?
+    public final String OUT_NAME; //final?
+    public final int    CUTOFF;   //final?
 
     public static void main(String[] args) {
         try{
-            final String IN_NAME = args[0];
-            final int CUTOFF = args[1];
-            final String OUT_NAME = args[2];
+            FILENAME = args[0];
+            CUTOFF = args[1];
+            OUT_NAME = args[2];
         }catch(Exception oops){
             System.out.println("Please provide three parameters\n" + oops);
         }
+
+        words = parse();
+
+        runBinarySearchTree(CUTOFF);
+        runLinkedList(CUTOFF);
+
     }
+
+    private ArrayList<String> parse(String filename){
+        try{
+            FileParser parser = new FileParser(filename);
+        }catch(IOException message){
+            System.out.println(message);
+            System.exit(0);
+        }
+        return parser.getAllWords();
+    }
+
+    public ArrayList<String> runBinarySearchTree(int cutoff){
+        for (String word : words){
+            tree.add(word);
+        }
+        tree.prune(cutoff);
+    }
+
+    public ArrayList<String> runLinkedList(int cutoff){
+        for (String word : words){
+            list.add(word);
+        }
+    }
+
 }

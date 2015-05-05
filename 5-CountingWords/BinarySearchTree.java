@@ -65,13 +65,6 @@ class BinarySearchTree<E extends Comparable<E> >{
         }
         return current.getData(); //data == current.getData();
     }
-    // public void insert(BSTNode<E> n, E data){
-    //     if (n == null)
-    //         return new BSTNode<E>(data);
-    //     if (data < n.
-    //
-    //
-    // }
 
     //creates a node, adds it to the BST, returns a reference to it (so the user can hang on to it if she chooses)
     public BSTNode<E> add(E data){
@@ -92,10 +85,13 @@ class BinarySearchTree<E extends Comparable<E> >{
         if (data.compareTo(node.getData()) < 0){
             node.setLeft( add(node.getLeft(), data) );
         }
-        else{
+        else if (data.compareTo(node.getData()) > 0){
             node.setRight( add(node.getRight(), data) );
         }
-        //TODO
+        else{
+            node.incrementCount();
+        }
+
         return node;
     }
 
@@ -105,11 +101,11 @@ class BinarySearchTree<E extends Comparable<E> >{
     * @param   data
     * @return  node
     */
-    public BSTNode<E> remove(E data){
-        return remove(root, data);
+    public void remove(E data){
+        root = remove(root, data);
     }
 
-    public BSTNode<E> remove(BSTNode<E> node, E data){//data is ____ ?
+    private BSTNode<E> remove(BSTNode<E> node, E data){//data is ____ ?
         if (node == null){
             return null;
         }
@@ -120,8 +116,9 @@ class BinarySearchTree<E extends Comparable<E> >{
             node.setRight( remove(node.getRight(), data) );
         }
         else { //data.CompareTo(node.getData) == 0;
-            delete(node);
+            return delete(node);
         }
+
         return node;
     }
 
@@ -166,8 +163,26 @@ class BinarySearchTree<E extends Comparable<E> >{
             return getPredecessorRec(node.getRight());
     }
 
+    /**
+     * Calls the recursive traverse(BSTNode<E>) method.
+     */
     public void traverse(){
         traverse(root);
+    }
+
+    /**
+     * Traverses through this instance of the binary search tree.
+     * @param node The top node in an unspecified subtree.
+     */
+    public void traverse(BSTNode<E> node, int min){ //difference vs. previous traversals is that this has a base case
+        if (node == null){
+            return;
+        }
+        if (node.getCount() < min){
+            remove(node.getData());
+        }
+        traverse(node.getLeft(),  min);
+        traverse(node.getRight(), min);
     }
 
     public void traverse(BSTNode<E> node){ //difference vs. previous traversals is that this has a base case
@@ -175,7 +190,26 @@ class BinarySearchTree<E extends Comparable<E> >{
             return;
         }
         traverse(node.getLeft());
-        System.out.println(node.getData());
+        System.out.println(node.getData() + " : " + node.getCount());
         traverse(node.getRight());
+    }
+
+    public void prune(int min){
+        prune(root, min);
+    }
+
+    /**
+     * Removes all nodes with count below a specified threshold, min
+     * @param  node under scrutiny
+     * @param  dictates the minimum count that will spare a node from pruning.
+     */
+    public void prune(BSTNode<E> node, int min){
+        if (node == null) //has no children, either
+            return;
+        prune(node.getLeft(),  min);
+        if (node.getCount() < min){
+            remove(node.getData());
+        }
+        prune(node.getRight(), min);
     }
 }
