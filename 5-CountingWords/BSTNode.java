@@ -40,7 +40,7 @@ public class BSTNode<E extends Comparable<E>> implements Comparable< BSTNode<E> 
     }
 
     /**
-     * Returns if this instance of BSTNode<E> has a child. Returns false otherwise.
+     * Returns true if this instance of BSTNode<E> has a child. Returns false otherwise.
      * Equivalent to calling `hasLeft() || hasRight()`.
      * @return A boolean to represent the validity of the above statement.
      */

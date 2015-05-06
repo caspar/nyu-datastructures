@@ -181,7 +181,8 @@ class BinarySearchTree<E extends Comparable<E> >{
             return;
         }
         traverse(node.getLeft());
-        System.out.println(node.getData() + " : " + node.getCount());
+        System.out.printf("%-5 d %s%n", node.getCount(), node.getData());
+        //System.out.println(node.getData() + " : " + node.getCount());
         traverse(node.getRight());
     }
 
@@ -201,6 +202,8 @@ class BinarySearchTree<E extends Comparable<E> >{
          if (node.getCount() < min){
              remove(node.getData());
          }
+        //  if (node.getCount() == 1) //words that appear only once. Kind of interesting.
+        //     System.out.println(node.getData());
          prune(node.getRight(), min);
      }
  }

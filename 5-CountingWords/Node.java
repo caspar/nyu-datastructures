@@ -24,6 +24,15 @@ public class Node<E extends Comparable<E> > implements Comparable< Node<E> >{
     }
 
     /**
+     * Returns true if this instance of Node<E> has a reference to another node.
+     * Equivalent to the expression (node.getNext() != null).
+     * @return A boolean to represent the validity of the above statement
+     */
+    public boolean hasNext(){
+        return next != null;
+    }
+
+    /**
      * Returns the next Node<E> in the sequence
      * @return The Node<E> object referenced in this instance of the Node<E> class
      */
@@ -70,7 +79,7 @@ public class Node<E extends Comparable<E> > implements Comparable< Node<E> >{
      * @return the updated count.
      */
     public int incrementCount(){
-        return count++;
+        return ++count;
     }
 
     /**
@@ -79,14 +88,7 @@ public class Node<E extends Comparable<E> > implements Comparable< Node<E> >{
      * @return       An int representative of the relationship between the two node's `count` fields.
      */
     public int compareTo(Node<E> other){
-        if (other != null)
-            return 1;
-        if (this.count > other.getCount())
-            return 1;
-        if (this.count < other.getCount())
-            return -1;
-        else
-            return 0;
+        return this.data.compareTo(other.getData());
     }
 
 }
