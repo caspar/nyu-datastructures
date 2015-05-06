@@ -9,9 +9,9 @@ public class MostFrequentWord {
 
     public  ArrayList<String> words = new ArrayList<String>(); //check this syntax; justify its publicity
 
-    public final String FILENAME; //final?
-    public final String OUT_NAME; //final?
-    public final int    CUTOFF;   //final?
+    private final String FILENAME; //final?
+    public  final String OUT_NAME; //final?
+    public  final int    CUTOFF;   //final?
 
     public static void main(String[] args) {
         try{
@@ -24,7 +24,10 @@ public class MostFrequentWord {
 
         words = parse();
 
+        System.gc(); //garbage collector
         runBinarySearchTree(CUTOFF);
+
+        System.gc(); //garbage collector
         runLinkedList(CUTOFF);
 
     }

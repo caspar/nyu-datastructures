@@ -106,6 +106,10 @@ public class BSTNode<E extends Comparable<E>> implements Comparable< BSTNode<E> 
         return count;
     }
 
+    public void setCount(int count){
+        this.count = count;
+    }
+
     /**
      * This method is less useful than a setCount(int) method,
      * but because I will only need to increment the Node's count as a iterate through a given word file, this is fine.
@@ -113,7 +117,9 @@ public class BSTNode<E extends Comparable<E>> implements Comparable< BSTNode<E> 
      * @return the updated count
      */
     public int incrementCount(){
-        return count++;
+        return ++count;
     }
+
+
 
 }

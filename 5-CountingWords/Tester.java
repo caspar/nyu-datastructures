@@ -1,4 +1,4 @@
-class BSTTester {
+class Tester {
 
     public static void main(String[] args) {
         BinarySearchTree<String> tree = new BinarySearchTree<String>();
@@ -15,9 +15,11 @@ class BSTTester {
                             // inspiration to support these two pillars of western civilization so that they may stand together in full vigor,
                             // mutually unafraid? Is this not the central problem of our time";
         String[] feynarray = feynmann.split(" ");
-        for (String s : austen)
+
+        String[] letters = {"d", "b", "g", "f","f","a","f", "e", "d", "b", "c", "h", "b", "b", "b", "h"};
+        for (String s : feynarray)
             tree.add(s);
-        //tree.traverse();
+        // tree.traverse();
         // tree.remove("it");
         // tree.remove("is");
         // tree.remove("a");
@@ -25,9 +27,21 @@ class BSTTester {
         // tree.remove("fortune");
         // tree.remove("universally");
         // System.out.println();
+
         tree.traverse();
-        System.out.println();
+
+        // tree.remove("a");
+        // tree.remove("b");
+        // tree.remove("c");
+        // tree.remove("d");
+        // tree.remove("f");
+        // tree.remove("q");
+        //
+        // tree.traverse();
+        // System.out.println();
+
         tree.prune(2);
+
         tree.traverse();
     }
 }
