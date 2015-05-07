@@ -181,7 +181,7 @@ class BinarySearchTree<E extends Comparable<E> >{
             return;
         }
         traverse(node.getLeft());
-        System.out.printf("%-5 d %s%n", node.getCount(), node.getData());
+        System.out.printf("%-5d %s%n", node.getCount(), node.getData());
         //System.out.println(node.getData() + " : " + node.getCount());
         traverse(node.getRight());
     }

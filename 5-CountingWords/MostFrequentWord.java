@@ -14,7 +14,7 @@ public class MostFrequentWord {
 
     private static String FILENAME; //final?
     public  static String OUT_NAME; //final?
-    public  static int    CUTOFF;   //final?
+    public  static int    CUTOFF;   //final?
 
     public static void main(String[] args) {
         try{
@@ -29,10 +29,10 @@ public class MostFrequentWord {
         words = parse(FILENAME);
 
         //System.gc(); //garbage collector
-        //runBinarySearchTree();
+        runBinarySearchTree();
 
         //System.gc(); //garbage collector
-        runLinkedList();
+        //runLinkedList();
 
     }
 

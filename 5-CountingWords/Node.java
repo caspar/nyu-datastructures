@@ -10,7 +10,7 @@ public class Node<E extends Comparable<E> > implements Comparable< Node<E> >{
     private E data = null;
     private int count = 1; //starts at one for obvious reasons
 
-    private Node<E> next = null;
+    private Node<E> next;
 
     public Node(E data){
         this.data = data;
@@ -88,7 +88,9 @@ public class Node<E extends Comparable<E> > implements Comparable< Node<E> >{
      * @return       An int representative of the relationship between the two node's `count` fields.
      */
     public int compareTo(Node<E> other){
-        return this.data.compareTo(other.getData());
+        if (other == null)
+            return -1;
+        return data.compareTo(other.getData());
     }
 
 }
