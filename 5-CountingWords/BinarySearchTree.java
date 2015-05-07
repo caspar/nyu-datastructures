@@ -10,6 +10,8 @@ class BinarySearchTree<E extends Comparable<E> >{
 
     private int count;
 
+    //private StringBuffer buffer = new StringBuffer();
+
     public BinarySearchTree(){
 
     }
@@ -167,23 +169,24 @@ class BinarySearchTree<E extends Comparable<E> >{
     /**
      * Calls the recursive traverse(BSTNode<E>) method.
      */
-    public void traverse(){
-        traverse(root);
-        System.out.println();
+    public StringBuffer traverse(){
+        return traverse(root);
     }
 
     /**
      * Traverses through this instance of the binary search tree.
      * @param node The top node in an unspecified subtree.
      */
-    public void traverse(BSTNode<E> node){ //difference vs. previous traversals is that this has a base case
+    private StringBuffer traverse(BSTNode<E> node){ //my first time using StringBuffer!
+        StringBuffer buffer = new StringBuffer();
+
         if (node == null){
-            return;
+            return buffer;
         }
-        traverse(node.getLeft());
-        System.out.printf("%-5d %s%n", node.getCount(), node.getData());
-        //System.out.println(node.getData() + " : " + node.getCount());
-        traverse(node.getRight());
+        buffer.append(traverse(node.getLeft()));
+        buffer.append(String.format("%-5d %s%n", node.getCount(), node.getData()));
+        buffer.append(traverse(node.getRight()));
+        return buffer;
     }
 
     public void prune(int min){
@@ -195,7 +198,7 @@ class BinarySearchTree<E extends Comparable<E> >{
      * @param  node under scrutiny
      * @param  dictates the minimum count that will spare a node from pruning.
      */
-     public void prune(BSTNode<E> node, int min){
+     private void prune(BSTNode<E> node, int min){
          if (node == null) //has no children, either
             return;
          prune(node.getLeft(),  min);
@@ -206,4 +209,5 @@ class BinarySearchTree<E extends Comparable<E> >{
         //     System.out.println(node.getData());
          prune(node.getRight(), min);
      }
+
  }

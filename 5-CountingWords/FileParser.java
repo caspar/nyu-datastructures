@@ -43,9 +43,9 @@ public class FileParser {
 	 *    File Parser object has been created
 	 *    only alphabetic characters are included in the words
 	 */
-	public ArrayList<String> getAllWords ( ) {
+	public ArrayList <String> getAllWords ( ) {
 		//create a new list to store all the words
-		ArrayList<String> listOfWords = new ArrayList<String>(5000);
+		ArrayList < String > listOfWords = new ArrayList<String> (5000);
 
 		while ( input.hasNext() ) {
 			String nextWord = input.next();

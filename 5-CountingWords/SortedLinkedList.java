@@ -73,7 +73,7 @@ public class SortedLinkedList<E extends Comparable<E> >{
             current = current.getNext();
         }
     }
-    
+
     public void traverse(){
         Node<E> node = head;
         while (node != null){
@@ -83,4 +83,16 @@ public class SortedLinkedList<E extends Comparable<E> >{
         }
         System.out.println();
     }
+
+    public int size(){
+        int size = 0;
+        Node<E> node = head;
+        while (node != null){
+            size++;
+            node = node.getNext();
+        }
+        return size;
+    }
+
+
 }
