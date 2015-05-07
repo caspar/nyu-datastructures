@@ -29,7 +29,7 @@ public class SortedLinkedList<E extends Comparable<E> >{
                 current = current.getNext();
             }
             else
-            break;
+                break;
         }
 
         if (newNode.compareTo(current) == 0){
@@ -46,130 +46,41 @@ public class SortedLinkedList<E extends Comparable<E> >{
         }
     }
 
-    // public void add(E data){
-    //     if (head == null){
-    //         head = new Node<E>(data);
-    //         System.out.println("hrrm");
-    //         return;
-    //     }
-    //
-    //     Node<E> node = new Node<E>(data);
-    //     Node<E> previous = null;
-    //     Node<E> next = head;
-    //
-    //     while(next != null){
-    //         if (node.compareTo(next) == 0){
-    //             next.incrementCount();
-    //             System.out.println(next.getCount());
-    //             break;
-    //         }
-    //         else if (node.compareTo(next) > 0){
-    //             node.setNext(next);
-    //             previous.setNext(node);
-    //             //System.out.println(data);
-    //             break;
-    //         }
-    //         else{
-    //             previous = next;
-    //             next = next.getNext();
-    //             System.out.println("hmm");
-    //         }
-    //     }
-    // }
-
-    // public void add(E data){
-    //     if (head == null){ //first time
-    //         head = new Node<E>(data);
-    //         System.out.println("head was null");
-    //     }
-    //     else{
-    //         System.out.println("adding new node");
-    //         add(null, new Node<E>(data), head);
-    //     }
-    // }
-    //
-    // public void add(Node<E> previous, Node<E> newNode, Node<E> current){
-    //     System.out.println(newNode.getData());
-    //     while (current != null){
-    //         if (newNode.compareTo(current) == 0){
-    //             System.out.println("equal");
-    //             current.incrementCount();
-    //             break;
-    //         }
-    //         else if (newNode.compareTo(current) > 0){ // a > b
-    //             System.out.println(">");
-    //             //insert the node between previous and current;
-    //             if (previous != null){ //current == head
-    //                 System.out.println("current == head");
-    //                 previous.setNext(newNode);
-    //             }
-    //             newNode.setNext(current);
-    //             break;
-    //         }
-    //         else{ //newNode's data < current's
-    //             System.out.println("newNode's data < current's");
-    //             previous = current;
-    //             current = current.getNext();
-    //         }
-    //     }
-    //     System.out.println("sucessfully added node");
-    //
-    // }
-
-    // public void add(E data){
-    //     Node<E> previous;
-    //     Node<E> location;
-    //     E locData;
-    //
-    //     location = head;
-    //     previous = null;
-    //     while (location != null){
-    //         locData = location.getData();
-    //         if (locData.compareTo(data) == 0){
-    //             location.incrementCount();
-    //             break;
-    //         }
-    //         else if (data.compareTo(data) < 0){
-    //             previous = location;
-    //             location = location.getNext();
-    //         }
-    //         else
-    //             break;
-    //     }
-    //     Node<E> newNode = new Node<E>(data);
-    //
-    //     if (previous == null){
-    //         newNode.setNext(head);
-    //         head = newNode; //this may be the problem!
-    //     }
-    //     else{
-    //         newNode.setNext(location);
-    //         previous.setNext(newNode);
-    //     }
-    // }
-
-    public void prune(int min){
-        if (head == null)
+    public void remove(E data){ //removes first instance only
+        if (head == null){
             return;
-        prune(head, min);
-    }
-
-    public void prune(Node<E> node, int min){ //not really the right verb
-        while (node.getNext() != null){
-            if (node.getNext().getCount() < min){
-                node.setNext(node.getNext().getNext());
-                break;
+        }
+        if (head.getData().compareTo(data) == 0){
+            head = head.getNext();
+            return;
+        }
+        Node<E> previous = head; //previous.getNext() == current
+        while (previous.getNext() != null){
+            if (previous.getNext().getData().compareTo(data) == 0){
+                previous.setNext(previous.getNext().getNext());
+                return;
             }
-            node = node.getNext();
+            previous = previous.getNext();
         }
     }
 
+    public void prune(int min){
+        Node<E> current = head;
+        while (current != null){
+            if (current.getCount() < min){
+                remove(current.getData());
+            }
+            current = current.getNext();
+        }
+    }
+    
     public void traverse(){
         Node<E> node = head;
         while (node != null){
-            System.out.println(node.getCount() + "   " + node.getData());
-            //System.out.printf("%-5 d %s%n", node.getCount(), node.getData());
+            //System.out.println(node.getCount() + "   " + node.getData());
+            System.out.printf("%-5d %s%n", node.getCount(), node.getData());
             node = node.getNext();
         }
+        System.out.println();
     }
 }

@@ -32,7 +32,7 @@ public class MostFrequentWord {
         runBinarySearchTree();
 
         //System.gc(); //garbage collector
-        //runLinkedList();
+        runLinkedList();
 
     }
 
@@ -47,6 +47,7 @@ public class MostFrequentWord {
                          // (Java doesn't see that the System.exit() call will prevent it
                          // from excecuting if parser has not been initialized)
         }
+        //System.out.println(parser.getAllWords());
         return parser.getAllWords();
     }
 
