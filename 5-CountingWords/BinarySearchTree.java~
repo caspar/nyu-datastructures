@@ -252,13 +252,11 @@ class BinarySearchTree<E extends Comparable<E> >{
          if (node == null) //has no children, either
             return;
          prune(node.getLeft(),  min);
-	 if (node.getCount() == 1)
-	     System.out.println(node.getData());
-	 if (node.getCount() < min){
+         if (node.getCount() < min){
              remove(node.getData());
          }
-	 //if (node.getCount() == 1) //words that appear only once. Kind of interesting.
-	       //System.out.println(node.getData());
+        //  if (node.getCount() == 1) //words that appear only once. Kind of interesting.
+        //     System.out.println(node.getData());
          prune(node.getRight(), min);
      }
 
