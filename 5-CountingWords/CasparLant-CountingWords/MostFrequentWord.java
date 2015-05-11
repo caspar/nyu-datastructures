@@ -94,8 +94,8 @@ public class MostFrequentWord {
         start = System.nanoTime();
         words =  parser.getAllWords();
         end = System.nanoTime();
-        System.out.printf("\nINFO: Reading file took %7d nanoseconds ( ~0.%d seconds).\n",
-                         (end - start), (end - start)/1000000);
+        System.out.printf("\nINFO: Reading file took %7d nanoseconds ( ~%.3f seconds).\n",
+                         (end - start), (double)(end - start)/1000000000.0);
         System.out.printf("INFO: %d words read.\n", words.size());
         return words;
     }
@@ -115,7 +115,7 @@ public class MostFrequentWord {
         for (String word : words){
             list.add(word);
         }
-        wordsAdded = list.size();
+        wordsAdded = list.getSize();
 
         mid = System.nanoTime();
         list.prune(CUTOFF);
@@ -123,12 +123,12 @@ public class MostFrequentWord {
 
         // runtime analysis
         System.out.println("\nProcessing using Sorted Linked List:");
-        System.out.printf("INFO: Creating index took %d nanoseconds ( ~0.%d seconds).\n",
-        (mid - start), (mid - start)/1000000);
+        System.out.printf("INFO: Creating index took %d nanoseconds ( ~%.3f seconds).\n",
+        (mid - start), (double)(mid - start)/1000000000.0);
         System.out.printf("INFO: %d words stored in index.\n", wordsAdded);
-        System.out.printf("INFO: Pruning index took %d nanoseconds ( ~0.%d seconds).\n",
-        (end - mid), (end - mid)/1000000);
-        System.out.printf("INFO: %d words remaining after pruning.\n", list.size());
+        System.out.printf("INFO: Pruning index took %d nanoseconds ( ~%.3f seconds).\n",
+        (end - mid), (double)(end - mid)/1000000000.0);
+        System.out.printf("INFO: %d words remaining after pruning.\n", list.getSize());
     }
 
     /**
@@ -145,7 +145,7 @@ public class MostFrequentWord {
         for (String word : words){
             tree.add(word);
         }
-        wordsAdded = tree.size();
+        wordsAdded = tree.getSize();
 
         mid = System.nanoTime();
         tree.prune(CUTOFF);
@@ -153,12 +153,12 @@ public class MostFrequentWord {
 
         // runtime analysis
         System.out.println("\nProcessing using Recursive Binary Search Tree:");
-        System.out.printf("INFO: Creating index took %d nanoseconds ( ~0.%d seconds).\n",
-        (mid - start), (mid - start)/1000000);
+        System.out.printf("INFO: Creating index took %d nanoseconds ( ~%.3f seconds).\n",
+        (mid - start), (double)(mid - start)/1000000000.0);
         System.out.printf("INFO: %d words stored in index.\n", wordsAdded);
-        System.out.printf("INFO: Pruning index took %d nanoseconds ( ~0.%d seconds).\n",
-        (end - mid), (end - mid)/1000000);
-        System.out.printf("INFO: %d words remaining after pruning.\n\n", tree.size());
+        System.out.printf("INFO: Pruning index took %d nanoseconds ( ~%.3f seconds).\n",
+        (end - mid), (double)(end - mid)/1000000000.0);
+        System.out.printf("INFO: %d words remaining after pruning.\n\n", tree.getSize());
     }
 
     /**

@@ -13,6 +13,8 @@ class BinarySearchTree<E extends Comparable<E> >{
                        //The node would be deleted, but its count was passed on the its successor-predecessor. Regal.
                        //Took me FOREVER to figure out.
 
+    private int size;
+
     /**
      * Default constuctor; does nothing.
      */
@@ -25,6 +27,10 @@ class BinarySearchTree<E extends Comparable<E> >{
      */
     public int size(){
         return size(root);
+    }
+
+    public int getSize(){
+        return size;
     }
 
     /**
@@ -89,11 +95,10 @@ class BinarySearchTree<E extends Comparable<E> >{
         //return add(new BSTNode<E>(data) );
         if (root == null){
             root = new BSTNode<E>(data);
-            //traverse();
+            size = 1;
             return root;
         }
         else{
-            //traverse();
             return add(root, data);
         }
     }
@@ -107,6 +112,7 @@ class BinarySearchTree<E extends Comparable<E> >{
      */
     private BSTNode<E> add(BSTNode<E> node, E data){
         if (node == null){
+            size++;
             node = new BSTNode<E>(data);
             return node;
         }
@@ -130,6 +136,7 @@ class BinarySearchTree<E extends Comparable<E> >{
      * @param data Data to be removed.
      */
     public void remove(E data){
+        size--;
         root = remove(root, data);
     }
 

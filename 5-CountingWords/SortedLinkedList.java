@@ -7,6 +7,8 @@ public class SortedLinkedList<E extends Comparable<E> >{
 
     private Node<E> head;
 
+    private int size;
+
     /**
      * Default constructor. Does nothing
      */
@@ -21,14 +23,24 @@ public class SortedLinkedList<E extends Comparable<E> >{
     }
 
     /**
+     * Returns the value of the class variable "size"
+     * @return The size of the linked list structure.
+     */
+    public int getSize(){
+        return size;
+    }
+
+    /**
      * Checks if head is null,
      * passes the burden of adding a node on to the following method otherwise.
      * @param data Data to be added.
      */
     public void add(E data){
         Node<E> newNode = new Node<E>(data);
-        if (head == null)
+        if (head == null){
+            size = 1;
             head = newNode;
+        }
         else
         add(null, newNode, head);
     }
@@ -56,10 +68,12 @@ public class SortedLinkedList<E extends Comparable<E> >{
             return;
         }
         if (previous == null){
+            size++;
             newNode.setNext(head);
             head = newNode;
         }
         else{
+            size++;
             newNode.setNext(current); //current may be null
             previous.setNext(newNode);
         }
@@ -74,12 +88,14 @@ public class SortedLinkedList<E extends Comparable<E> >{
             return;
         }
         if (head.getData().compareTo(data) == 0){
+            size--;
             head = head.getNext();
             return;
         }
         Node<E> previous = head; //previous.getNext() == current
         while (previous.getNext() != null){
             if (previous.getNext().getData().compareTo(data) == 0){
+                size--;
                 previous.setNext(previous.getNext().getNext());
                 return;
             }
@@ -89,7 +105,8 @@ public class SortedLinkedList<E extends Comparable<E> >{
 
     /**
      * Iteratively removes all nodes from the list whos count is less than `min`.
-     * Calls remove. Not very good, I know.
+     * Initially handled node removal locally, but after reasing the guidlines it
+     * seemed better to make a call to remove(), inefficient as it is.
      * @param min Minimum threshold of count for node's immunity.
      */
     public void prune(int min){
@@ -108,7 +125,6 @@ public class SortedLinkedList<E extends Comparable<E> >{
     public void traverse(){
         Node<E> node = head;
         while (node != null){
-            //System.out.println(node.getCount() + "   " + node.getData());
             System.out.printf("%-5d %s%n", node.getCount(), node.getData());
             node = node.getNext();
         }
